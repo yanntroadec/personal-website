@@ -1,0 +1,13 @@
+# Autoriser tous les robots
+User-agent: *
+Allow: /
+
+# Bloquer les fichiers de config
+Disallow: /api/
+Disallow: /_next/
+
+# Sitemap
+Sitemap: https://yanntroadec.com/sitemap.xml
+
+# Délai entre les requêtes
+Crawl-delay: 1

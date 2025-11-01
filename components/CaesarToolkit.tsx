@@ -30,7 +30,7 @@ interface Result {
 export default function CaesarToolkit() {
   // State management
   const [input, setInput] = useState("")
-  const [shift, setShift] = useState(3)
+  const [shift, setShift] = useState<number | "">(1)
   const [mode, setMode] = useState<Mode>('auto')
   const [language, setLanguage] = useState<Language>('english')
   const [result, setResult] = useState<Result | null>(null)
@@ -86,7 +86,7 @@ export default function CaesarToolkit() {
         body: JSON.stringify({
           text: input,
           mode,
-          shift: mode === 'encode' || mode === 'decode' ? shift : undefined,
+          shift: mode === 'encode' || mode === 'decode' ? (shift === '' ? 1 : shift) : undefined,
           language: mode === 'auto' ? language : undefined
         })
       })
@@ -193,11 +193,41 @@ export default function CaesarToolkit() {
           <div className="flex items-stretch gap-2">
             {/* Input central */}
             <input
-              type="number"
-              min="1"
-              max="25"
+              type="text"
+              inputMode="numeric"
               value={shift}
-              onChange={(e) => setShift(Math.min(25, Math.max(1, parseInt(e.target.value) || 1)))}
+              onChange={(e) => {
+                const value = e.target.value
+                // Permet de vider l'input complètement
+                if (value === '') {
+                  setShift('')
+                } 
+                // Permet de taper uniquement des nombres <= 25
+                else if (/^\d+$/.test(value)) {
+                  const num = parseInt(value)
+                  if (num <= 25) {
+                    setShift(num)
+                  }
+                  // Si > 25, on ignore la saisie (ne met pas à jour)
+                }
+              }}
+              onBlur={() => {
+                // Remet 1 par défaut si vide ou < 1
+                if (shift === '' || shift < 1) {
+                  setShift(1)
+                }
+              }}
+              onKeyDown={(e) => {
+                const currentShift = shift === '' ? 1 : shift
+                if (e.key === 'ArrowUp') {
+                  e.preventDefault()
+                  setShift(Math.min(25, currentShift + 1))
+                } else if (e.key === 'ArrowDown') {
+                  e.preventDefault()
+                  setShift(Math.max(1, currentShift - 1))
+                }
+              }}
+              placeholder="1"
               className="flex-1 p-3 border-2 border-slate-700 rounded-lg bg-slate-900/50 text-white font-mono text-center text-lg focus:outline-none focus:border-cyan-400 transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
             
@@ -205,8 +235,11 @@ export default function CaesarToolkit() {
             <div className="flex flex-col gap-1">
               {/* Flèche haut - Incrémenter */}
               <button
-                onClick={() => setShift(Math.min(25, shift + 1))}
-                disabled={shift >= 25}
+                onClick={() => {
+                  const currentShift = shift === '' ? 1 : shift
+                  setShift(Math.min(25, currentShift + 1))
+                }}
+                disabled={(shift !== '' && shift >= 25)}
                 className="w-10 h-6 rounded border-2 border-slate-700 bg-slate-900/50 text-slate-400 hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-400/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-slate-700 disabled:hover:text-slate-400 disabled:hover:bg-slate-900/50 flex items-center justify-center"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,8 +249,11 @@ export default function CaesarToolkit() {
               
               {/* Flèche bas - Décrémenter */}
               <button
-                onClick={() => setShift(Math.max(1, shift - 1))}
-                disabled={shift <= 1}
+                onClick={() => {
+                  const currentShift = shift === '' ? 1 : shift
+                  setShift(Math.max(1, currentShift - 1))
+                }}
+                disabled={(shift !== '' && shift <= 1)}
                 className="w-10 h-6 rounded border-2 border-slate-700 bg-slate-900/50 text-slate-400 hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-400/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-slate-700 disabled:hover:text-slate-400 disabled:hover:bg-slate-900/50 flex items-center justify-center"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

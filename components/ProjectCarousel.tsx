@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 /**
  * ProjectCarousel Component
@@ -17,6 +17,11 @@ export default function ProjectCarousel({
 }) {
   const [currentIndex, setCurrentIndex] = useState(defaultIndex)
   const projectsArray = Array.isArray(children) ? children : [children]
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+
+  // Minimum swipe distance (in px) to trigger navigation
+  const minSwipeDistance = 50
 
   // Navigate to previous project
   const handlePrevious = () => {
@@ -28,10 +33,36 @@ export default function ProjectCarousel({
     setCurrentIndex((prev) => (prev === projectsArray.length - 1 ? 0 : prev + 1))
   }
 
+  // Handle touch start
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  // Handle touch move
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  // Handle touch end
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      handleNext()
+    } else if (isRightSwipe) {
+      handlePrevious()
+    }
+  }
+
   return (
     <div className="relative w-full max-w-7xl">
-      {/* Navigation Buttons */}
-      <div className="flex items-center justify-center gap-6">
+      {/* Navigation Buttons - Hidden on mobile */}
+      <div className="hidden md:flex items-center justify-center gap-6">
         {/* Previous Button */}
         <button
           onClick={handlePrevious}
@@ -82,6 +113,39 @@ export default function ProjectCarousel({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
+      </div>
+
+      {/* Mobile: Swipeable carousel */}
+      <div 
+        className="md:hidden overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        <div 
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {projectsArray.map((project, index) => (
+            <div 
+              key={index} 
+              className="w-full flex-shrink-0 px-4"
+            >
+              {project}
+            </div>
+          ))}
+        </div>
+
+        {/* Swipe instruction hint - shows on first load */}
+        <div className="text-center mt-4 text-slate-500 font-mono text-xs">
+          <svg className="w-4 h-4 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+          </svg>
+          Swipe to navigate
+          <svg className="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </div>
       </div>
 
       {/* Progress Indicator */}

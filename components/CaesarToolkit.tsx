@@ -309,7 +309,14 @@ export default function CaesarToolkit() {
           disabled={loading}
           className="flex-1 bg-cyan-600 text-white px-6 py-3 rounded-lg hover:bg-cyan-500 transition-colors font-mono font-bold disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {getButtonLabel()}
+          {loading ? (
+            <>
+              <span className="md:hidden">...</span>
+              <span className="hidden md:inline">Processing...</span>
+            </>
+          ) : (
+            getButtonLabel()
+          )}
         </button>
         
         <button

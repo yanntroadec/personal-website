@@ -228,11 +228,11 @@ export default function CaesarToolkit() {
                 }
               }}
               placeholder="1"
-              className="flex-1 p-3 border-2 border-slate-700 rounded-lg bg-slate-900/50 text-white font-mono text-center text-lg focus:outline-none focus:border-cyan-400 transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              className="flex-1 max-w-[200px] md:max-w-none p-3 border-2 border-slate-700 rounded-lg bg-slate-900/50 text-white font-mono text-center text-lg focus:outline-none focus:border-cyan-400 transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
             
-            {/* Boutons flèches empilés */}
-            <div className="flex flex-col gap-1">
+            {/* Boutons flèches empilés - même hauteur que l'input */}
+            <div className="flex flex-col gap-0.5">
               {/* Flèche haut - Incrémenter */}
               <button
                 onClick={() => {
@@ -240,7 +240,7 @@ export default function CaesarToolkit() {
                   setShift(Math.min(25, currentShift + 1))
                 }}
                 disabled={(shift !== '' && shift >= 25)}
-                className="w-10 h-6 rounded border-2 border-slate-700 bg-slate-900/50 text-slate-400 hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-400/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-slate-700 disabled:hover:text-slate-400 disabled:hover:bg-slate-900/50 flex items-center justify-center"
+                className="w-12 md:w-11 flex-1 rounded border-2 border-slate-700 bg-slate-900/50 text-slate-400 hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-400/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-slate-700 disabled:hover:text-slate-400 disabled:hover:bg-slate-900/50 flex items-center justify-center"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 15l7-7 7 7" />
@@ -254,7 +254,7 @@ export default function CaesarToolkit() {
                   setShift(Math.max(1, currentShift - 1))
                 }}
                 disabled={(shift !== '' && shift <= 1)}
-                className="w-10 h-6 rounded border-2 border-slate-700 bg-slate-900/50 text-slate-400 hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-400/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-slate-700 disabled:hover:text-slate-400 disabled:hover:bg-slate-900/50 flex items-center justify-center"
+                className="w-12 md:w-11 flex-1 rounded border-2 border-slate-700 bg-slate-900/50 text-slate-400 hover:border-cyan-400 hover:text-cyan-400 hover:bg-cyan-400/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-slate-700 disabled:hover:text-slate-400 disabled:hover:bg-slate-900/50 flex items-center justify-center"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />

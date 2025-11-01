@@ -192,15 +192,15 @@ export default function CaesarToolkit() {
                 key={lang.value}
                 onClick={() => setLanguage(lang.value as Language)}
                 className={`
-                  p-3 rounded-lg border-2 transition-all duration-200 flex items-center gap-2
+                  p-2 md:p-3 rounded-lg border-2 transition-all duration-200 flex items-center justify-center gap-1.5 md:gap-2
                   ${language === lang.value
                     ? 'border-cyan-400 bg-cyan-400/10 text-cyan-400'
                     : 'border-slate-700 bg-slate-900/50 text-slate-400 hover:border-slate-600'
                   }
                 `}
               >
-                <span className="text-xl">{lang.flag}</span>
-                <span className="font-mono text-sm">{lang.label}</span>
+                <span className="text-lg md:text-xl flex-shrink-0">{lang.flag}</span>
+                <span className="font-mono text-xs md:text-sm truncate">{lang.label}</span>
               </button>
             ))}
           </div>

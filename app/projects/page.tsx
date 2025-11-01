@@ -29,7 +29,7 @@ export default function Projects() {
           {/* Project 1: Decryptor */}
           <ProjectCard
             title="Caesar Cipher Decryptor"
-            description="A tool to automatically decode Caesar-encrypted messages in English using frequency analysis."
+            description="An automatic Caesar cipher decoder supporting four languages with frequency analysis."
             githubUrl="https://github.com/yanntroadec/caesar-cipher-toolkit"
           >
             <CaesarToolkit />

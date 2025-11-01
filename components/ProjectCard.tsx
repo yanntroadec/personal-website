@@ -1,5 +1,11 @@
 'use client'
 
+/**
+ * ProjectCard Component
+ * 
+ * Displays a project card with title, description, optional GitHub link,
+ * and custom content. Features hover effects and responsive design.
+ */
 export default function ProjectCard({ 
   title, 
   description, 
@@ -13,16 +19,18 @@ export default function ProjectCard({
 }) {
   return (
     <div className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/10 w-full md:max-w-2xl lg:max-w-3xl">
-
+      {/* Hover glow effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
       
       <div className="relative z-10">
-
+        {/* Header with title and optional GitHub link */}
         <div className="flex items-start justify-between mb-3">
+          {/* Project title */}
           <h3 className="text-2xl md:text-3xl font-bold font-mono text-white group-hover:text-cyan-400 transition-colors duration-300 flex-1">
             {title}
           </h3>
           
+          {/* GitHub link button (if URL provided) */}
           {githubUrl && (
             <a
               href={githubUrl}
@@ -31,6 +39,7 @@ export default function ProjectCard({
               className="ml-4 p-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 transition-colors duration-300 group/github"
               aria-label="View on GitHub"
             >
+              {/* GitHub icon */}
               <svg 
                 width="24" 
                 height="24" 
@@ -44,14 +53,15 @@ export default function ProjectCard({
           )}
         </div>
 
+        {/* Project description */}
         <p className="text-slate-400 mb-6 font-mono text-sm md:text-base leading-relaxed">
           {description}
         </p>
         
-
+        {/* Decorative separator line */}
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-slate-600 to-transparent mb-6"></div>
         
-
+        {/* Custom content area */}
         <div className="text-slate-300">
           {children}
         </div>

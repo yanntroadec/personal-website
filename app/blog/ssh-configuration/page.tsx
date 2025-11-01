@@ -1,14 +1,22 @@
 'use client'
 
 import BlogArticle, { Section, Paragraph, CodeBlock, InlineCode, List, Alert } from '../../../components/BlogArticle'
+import Link from 'next/link'
 
+/**
+ * SSH Configuration Article Page
+ * 
+ * Comprehensive guide on configuring and securing SSH access on Cisco devices.
+ * Covers basic setup, hardening techniques, and production best practices.
+ */
 export default function SshConfiguration() {
   return (
     <BlogArticle 
       title="Cisco SSH Deep Dive: How to Secure, Configure, and Harden Remote Access"
-      date="2025-10-20"
+      date="2025-11-01"
       readTime="8 min read"
     >
+      {/* Introduction */}
       <Section>
         <Paragraph>
           Securing network devices is fundamental to maintaining a robust infrastructure. 
@@ -18,6 +26,7 @@ export default function SshConfiguration() {
         </Paragraph>
       </Section>
 
+      {/* Prerequisites section */}
       <Section title="Prerequisites">
         <Paragraph>
           Before configuring SSH on your Cisco device, ensure you have:
@@ -30,17 +39,20 @@ export default function SshConfiguration() {
         ]} />
       </Section>
 
+      {/* Basic configuration steps */}
       <Section title="Basic SSH Configuration">
         <Paragraph>
           Let's start with the fundamental steps to enable SSH on a Cisco device:
         </Paragraph>
 
+        {/* Step 1: Hostname and domain */}
         <Paragraph>
           <strong>Step 1: Set the hostname and domain name</strong>
         </Paragraph>
         <CodeBlock language="cisco-ios">{`Router(config)# hostname R1
 R1(config)# ip domain-name example.com`}</CodeBlock>
 
+        {/* Step 2: RSA key generation */}
         <Paragraph>
           <strong>Step 2: Generate RSA keys</strong>
         </Paragraph>
@@ -56,11 +68,13 @@ The name for the keys will be: R1.example.com
           in sensitive environments, consider 4096-bit keys, though key generation will take longer.
         </Alert>
 
+        {/* Step 3: User account creation */}
         <Paragraph>
           <strong>Step 3: Create a local user account</strong>
         </Paragraph>
         <CodeBlock language="cisco-ios">{`R1(config)# username admin privilege 15 secret YourStrongPassword123!`}</CodeBlock>
 
+        {/* Step 4: VTY line configuration */}
         <Paragraph>
           <strong>Step 4: Configure VTY lines for SSH</strong>
         </Paragraph>
@@ -70,11 +84,13 @@ R1(config-line)# login local
 R1(config-line)# exit`}</CodeBlock>
       </Section>
 
+      {/* Security hardening section */}
       <Section title="Hardening SSH Access">
         <Paragraph>
           Basic configuration is just the start. Let's implement security best practices:
         </Paragraph>
 
+        {/* SSH version 2 enforcement */}
         <Paragraph>
           <strong>Enable SSH version 2 only</strong>
         </Paragraph>
@@ -84,12 +100,14 @@ R1(config-line)# exit`}</CodeBlock>
           SSH version 1 has known security vulnerabilities. Always use version 2 in production environments.
         </Alert>
 
+        {/* Timeout and retry configuration */}
         <Paragraph>
           <strong>Set SSH timeout and authentication retries</strong>
         </Paragraph>
         <CodeBlock language="cisco-ios">{`R1(config)# ip ssh time-out 60
 R1(config)# ip ssh authentication-retries 3`}</CodeBlock>
 
+        {/* Access control lists */}
         <Paragraph>
           <strong>Implement access control with ACLs</strong>
         </Paragraph>
@@ -104,7 +122,9 @@ R1(config-line)# access-class 10 in`}</CodeBlock>
         </Paragraph>
       </Section>
 
+      {/* Advanced configuration options */}
       <Section title="Advanced Configuration">
+        {/* Source interface configuration */}
         <Paragraph>
           <strong>Configure source interface for SSH</strong>
         </Paragraph>
@@ -115,6 +135,7 @@ R1(config-line)# access-class 10 in`}</CodeBlock>
           physical interfaces go down, improving management reliability.
         </Paragraph>
 
+        {/* Logging configuration */}
         <Paragraph>
           <strong>Enable logging for security auditing</strong>
         </Paragraph>
@@ -122,6 +143,7 @@ R1(config-line)# access-class 10 in`}</CodeBlock>
 R1(config)# login on-success log`}</CodeBlock>
       </Section>
 
+      {/* Verification commands */}
       <Section title="Verification Commands">
         <Paragraph>
           After configuration, verify your SSH setup with these commands:
@@ -137,6 +159,7 @@ R1# show line vty 0 4`}</CodeBlock>
         </Paragraph>
       </Section>
 
+      {/* Best practices list */}
       <Section title="Security Best Practices">
         <List 
           ordered={true}
@@ -152,6 +175,7 @@ R1# show line vty 0 4`}</CodeBlock>
         />
       </Section>
 
+      {/* Troubleshooting guide */}
       <Section title="Troubleshooting">
         <Paragraph>
           Common SSH issues and solutions:
@@ -173,6 +197,7 @@ R1# show line vty 0 4`}</CodeBlock>
         </Paragraph>
       </Section>
 
+      {/* Conclusion */}
       <Section title="Conclusion">
         <Paragraph>
           Proper SSH configuration is essential for secure network device management. By following 
@@ -186,6 +211,29 @@ R1# show line vty 0 4`}</CodeBlock>
           for securing Cisco network devices.
         </Alert>
       </Section>
+
+      {/* Back to blog navigation */}
+      <div className="mt-16 pt-8 border-t border-slate-700/50">
+        <Link
+          href="/blog"
+          className="group inline-flex items-center gap-3 px-6 py-3 rounded-lg border-2 border-slate-700 bg-slate-900/50 hover:border-cyan-400 hover:bg-cyan-400/10 transition-all duration-300"
+        >
+          {/* Arrow icon */}
+          <svg 
+            className="w-5 h-5 text-slate-400 group-hover:text-cyan-400 transition-colors duration-300 group-hover:-translate-x-1 transition-transform" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          
+          {/* Link text */}
+          <span className="font-mono text-slate-400 group-hover:text-cyan-400 transition-colors duration-300">
+            Back to Blog
+          </span>
+        </Link>
+      </div>
     </BlogArticle>
   )
 }

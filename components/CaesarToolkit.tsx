@@ -2,9 +2,11 @@
 
 import { useState } from "react"
 
+// Type definitions for operation modes
 type Mode = 'auto' | 'encode' | 'decode' | 'rot13' | 'brute'
 type Language = 'english' | 'french' | 'spanish' | 'german'
 
+// Result structure returned from API
 interface Result {
   output: string
   shift?: number
@@ -12,7 +14,21 @@ interface Result {
   allShifts?: Array<{ shift: number; text: string; score?: number }>
 }
 
+/**
+ * CaesarToolkit Component
+ * 
+ * A comprehensive Caesar cipher encryption/decryption toolkit with multiple operation modes:
+ * - Auto Decode: Automatically detects the correct shift using statistical analysis
+ * - Encode: Encrypts plaintext with a specified shift value
+ * - Decode: Decrypts ciphertext with a known shift value
+ * - ROT13: Applies the classic ROT13 cipher (fixed shift of 13)
+ * - Brute Force: Displays all 25 possible shift combinations
+ * 
+ * Supports multiple languages (English, French, Spanish, German) for accurate 
+ * frequency analysis in Auto Decode mode.
+ */
 export default function CaesarToolkit() {
+  // State management
   const [input, setInput] = useState("")
   const [shift, setShift] = useState(3)
   const [mode, setMode] = useState<Mode>('auto')
@@ -22,6 +38,7 @@ export default function CaesarToolkit() {
   const [error, setError] = useState("")
   const [copied, setCopied] = useState(false)
 
+  // Available operation modes with descriptions
   const modes = [
     { value: 'auto', label: 'Auto Decode', desc: 'Statistical analysis' },
     { value: 'encode', label: 'Encode', desc: 'Encrypt text' },
@@ -30,6 +47,7 @@ export default function CaesarToolkit() {
     { value: 'brute', label: 'Brute Force', desc: 'Try all shifts' }
   ] as const
 
+  // Supported languages for statistical analysis
   const languages = [
     { value: 'english', label: 'English', flag: '🇬🇧' },
     { value: 'french', label: 'Français', flag: '🇫🇷' },
@@ -37,7 +55,7 @@ export default function CaesarToolkit() {
     { value: 'german', label: 'Deutsch', flag: '🇩🇪' }
   ] as const
 
-  // Get button label based on mode
+  // Get button label based on current mode
   const getButtonLabel = () => {
     const labels = {
       'auto': 'Auto Decode',
@@ -49,6 +67,7 @@ export default function CaesarToolkit() {
     return loading ? 'Processing...' : labels[mode]
   }
 
+  // Handle text processing based on selected mode
   async function handleProcess() {
     if (!input.trim()) {
       setError("Please enter some text")
@@ -85,6 +104,7 @@ export default function CaesarToolkit() {
     }
   }
 
+  // Clear all inputs and results
   function handleClear() {
     setInput("")
     setResult(null)
@@ -92,6 +112,7 @@ export default function CaesarToolkit() {
     setCopied(false)
   }
 
+  // Copy result to clipboard
   async function handleCopy() {
     if (!result?.output) return
 
@@ -104,6 +125,7 @@ export default function CaesarToolkit() {
     }
   }
 
+  // Determine which controls to show based on mode
   const needsShift = mode === 'encode' || mode === 'decode'
   const needsLanguage = mode === 'auto'
   const showMainResult = mode !== 'brute' // Don't show main result for brute force
@@ -211,31 +233,32 @@ export default function CaesarToolkit() {
         </button>
       </div>
 
-      {/* Error */}
+      {/* Error Display */}
       {error && (
         <div className="p-4 bg-red-500/10 border-2 border-red-500/50 rounded-lg">
           <p className="text-red-400 font-mono text-sm">{error}</p>
         </div>
       )}
 
-      {/* Results */}
+      {/* Results Display */}
       {result && (
         <div className="space-y-4">
           {/* Main Result (hidden for brute force) */}
           {showMainResult && (
             <div className="p-4 bg-slate-900/50 rounded-lg border-2 border-slate-700">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2">
+              {/* Header with metadata and copy button - flex-wrap allows button to wrap on mobile */}
+              <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
+                <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-cyan-400 font-bold font-mono text-sm">
                     {mode === 'encode' ? 'ENCODED' : 'DECODED'}:
                   </span>
                   {result.shift !== undefined && (
-                    <span className="text-slate-500 font-mono text-xs">
+                    <span className="text-slate-500 font-mono text-xs whitespace-nowrap">
                       (shift: {result.shift})
                     </span>
                   )}
                   {result.confidence !== undefined && (
-                    <span className="text-slate-500 font-mono text-xs">
+                    <span className="text-slate-500 font-mono text-xs whitespace-nowrap">
                       (confidence: {result.confidence.toFixed(4)})
                     </span>
                   )}
@@ -244,7 +267,7 @@ export default function CaesarToolkit() {
                 {/* Copy Button */}
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/50 text-slate-400 hover:text-cyan-400 hover:border-cyan-400 transition-colors font-mono text-xs"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/50 text-slate-400 hover:text-cyan-400 hover:border-cyan-400 transition-colors font-mono text-xs shrink-0"
                 >
                   {copied ? (
                     <>
@@ -263,13 +286,14 @@ export default function CaesarToolkit() {
                   )}
                 </button>
               </div>
+              {/* Result text */}
               <p className="text-white font-mono text-lg break-words leading-relaxed">
                 {result.output}
               </p>
             </div>
           )}
 
-          {/* Brute Force Results */}
+          {/* Brute Force Results - Show all possible shifts */}
           {mode === 'brute' && result.allShifts && (
             <div className="p-4 bg-slate-900/50 rounded-lg border-2 border-slate-700 max-h-96 overflow-y-auto">
               <div className="text-cyan-400 font-bold font-mono text-sm mb-4">
@@ -291,7 +315,7 @@ export default function CaesarToolkit() {
             </div>
           )}
 
-          {/* Auto Decode - Top Results */}
+          {/* Auto Decode - Top 5 Candidates */}
           {mode === 'auto' && result.allShifts && result.allShifts.length > 1 && (
             <div className="p-4 bg-slate-900/50 rounded-lg border-2 border-slate-700">
               <div className="text-cyan-400 font-bold font-mono text-sm mb-4">

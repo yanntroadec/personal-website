@@ -4,7 +4,7 @@ Personal website built with Next.js.
 
 ## Stack
 
-- Next.js 14
+- Next.js 16
 - TypeScript
 - Tailwind CSS
 - Deployed on Vercel

@@ -1,10 +1,18 @@
 'use client'
 
+/**
+ * Footer Component
+ * 
+ * Site footer with social media links (GitHub and LinkedIn).
+ * Features a decorative line and hover animations on icons.
+ */
 export default function Footer() {
   return (
     <div className="w-full flex justify-center items-center gap-8 py-6 z-50 border-t border-slate-700/50 bg-slate-900/50 backdrop-blur-sm relative">
+      {/* Decorative line above footer */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
       
+      {/* GitHub link */}
       <a
         href="https://github.com/yanntroadec"
         target="_blank"
@@ -12,7 +20,10 @@ export default function Footer() {
         className="group relative p-2"
         aria-label="GitHub"
       >
+        {/* Hover background effect */}
         <div className="absolute inset-0 bg-slate-700/30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        {/* GitHub icon */}
         <svg 
           width="28" 
           height="28" 
@@ -24,6 +35,7 @@ export default function Footer() {
         </svg>
       </a>
       
+      {/* LinkedIn link */}
       <a
         href="https://www.linkedin.com/in/yann-troadec/"
         target="_blank"
@@ -31,7 +43,10 @@ export default function Footer() {
         className="group relative p-2"
         aria-label="LinkedIn"
       >
+        {/* Hover background effect */}
         <div className="absolute inset-0 bg-slate-700/30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        {/* LinkedIn icon */}
         <svg 
           width="28" 
           height="28" 

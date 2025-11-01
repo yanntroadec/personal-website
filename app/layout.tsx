@@ -89,8 +89,6 @@ export const viewport: Viewport = {
  * 
  * The main layout wrapper for all pages in the application.
  * Includes global styles and HTML structure.
- * 
- * @param children - Page content to be rendered
  */
 export default function RootLayout({
   children,

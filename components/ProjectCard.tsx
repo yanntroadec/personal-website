@@ -61,8 +61,8 @@ export default function ProjectCard({
         {/* Decorative separator line */}
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-slate-600 to-transparent mb-6"></div>
         
-        {/* Custom content area */}
-        <div className="text-slate-300">
+        {/* Custom content area with minimum height */}
+        <div className="text-slate-300 min-h-[450px]">
           {children}
         </div>
       </div>

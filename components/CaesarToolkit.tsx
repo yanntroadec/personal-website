@@ -130,6 +130,29 @@ export default function CaesarToolkit() {
   const needsLanguage = mode === 'auto'
   const showMainResult = mode !== 'brute' // Don't show main result for brute force
 
+  // Multilingual placeholders
+  const placeholders = {
+    encode: 'Enter plain text...',
+    decode: 'Paste your Caesar cipher here...',
+    auto: {
+      english: 'Paste your Caesar cipher here...',
+      french: 'Collez votre code Caesar ici...',
+      spanish: 'Pega tu cifrado César aquí...',
+      german: 'Fügen Sie Ihre Caesar-Chiffre hier ein...'
+    },
+    rot13: 'Paste your text here...',
+    brute: 'Paste your Caesar cipher here...'
+  }
+
+  // Get the appropriate placeholder
+  const getPlaceholder = () => {
+    if (mode === 'encode') return placeholders.encode
+    if (mode === 'auto') return placeholders.auto[language]
+    if (mode === 'rot13') return placeholders.rot13
+    if (mode === 'brute') return placeholders.brute
+    return placeholders.decode
+  }
+
   return (
     <div className="flex flex-col gap-6">
       {/* Mode Selection */}
@@ -198,21 +221,21 @@ export default function CaesarToolkit() {
               value={shift}
               onChange={(e) => {
                 const value = e.target.value
-                // Permet de vider l'input complètement
+                // Allow completely clearing the input
                 if (value === '') {
                   setShift('')
                 } 
-                // Permet de taper uniquement des nombres <= 25
+                // Only allow typing numbers <= 25
                 else if (/^\d+$/.test(value)) {
                   const num = parseInt(value)
                   if (num <= 25) {
                     setShift(num)
                   }
-                  // Si > 25, on ignore la saisie (ne met pas à jour)
+                  // If > 25, ignore the input (don't update)
                 }
               }}
               onBlur={() => {
-                // Remet 1 par défaut si vide ou < 1
+                // Reset to 1 by default if empty or < 1
                 if (shift === '' || shift < 1) {
                   setShift(1)
                 }
@@ -231,9 +254,9 @@ export default function CaesarToolkit() {
               className="flex-1 max-w-[200px] md:max-w-none p-3 border-2 border-slate-700 rounded-lg bg-slate-900/50 text-white font-mono text-center text-lg focus:outline-none focus:border-cyan-400 transition-colors [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
             
-            {/* Boutons flèches empilés - même hauteur que l'input */}
+            {/* Stacked arrow buttons - same height as input */}
             <div className="flex flex-col gap-0.5">
-              {/* Flèche haut - Incrémenter */}
+              {/* Up arrow - Increment */}
               <button
                 onClick={() => {
                   const currentShift = shift === '' ? 1 : shift
@@ -247,7 +270,7 @@ export default function CaesarToolkit() {
                 </svg>
               </button>
               
-              {/* Flèche bas - Décrémenter */}
+              {/* Down arrow - Decrement */}
               <button
                 onClick={() => {
                   const currentShift = shift === '' ? 1 : shift
@@ -273,7 +296,7 @@ export default function CaesarToolkit() {
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={mode === 'encode' ? 'Enter plain text...' : 'Paste your Caesar cipher here...'}
+          placeholder={getPlaceholder()}
           rows={4}
           className="w-full p-3 border-2 border-slate-700 rounded-lg bg-slate-900/50 text-white placeholder-slate-500 font-mono focus:outline-none focus:border-cyan-400 transition-colors resize-none"
         />

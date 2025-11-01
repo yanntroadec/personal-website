@@ -33,7 +33,7 @@ export default function Blog() {
         <div className="mt-8 max-w-4xl w-full space-y-6">
           <ArticleCard
             title="Cisco SSH Deep Dive: How to Secure, Configure, and Harden Remote Access"
-            date="2025-10-20"
+            date="2025-11-01"
             excerpt="Deep dive into SSH configuration and security best practices on Cisco routers and switches."
             link="/blog/ssh-configuration"
           />

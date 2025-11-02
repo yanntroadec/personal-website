@@ -59,6 +59,20 @@ export default function Header() {
   return (
     <div className="w-full flex justify-center pt-8 z-50 relative">
       <div className="relative flex items-center">
+        {/* Left navigation link (mobile only, hidden on home page) */}
+        {!isHomePage && navigationLinks.length >= 1 && (
+          <div className="md:hidden absolute right-14 flex items-center">
+            <Link
+              href={navigationLinks[0].href}
+              className="group/nav relative block bg-slate-700/80 backdrop-blur-sm border border-slate-600/50 rounded-xl px-3 py-2 hover:bg-cyan-400 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/50"
+            >
+              <span className="text-white group-hover/nav:text-slate-900 font-mono text-xs font-semibold transition-colors duration-300 whitespace-nowrap">
+                {navigationLinks[0].label}
+              </span>
+            </Link>
+          </div>
+        )}
+
         {/* Main home button (always visible and clickable to return home) */}
         <Link
           href="/"
@@ -89,16 +103,30 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Hover trigger area for menu (invisible, positioned to the right of home button) */}
+        {/* Right navigation link (mobile only, hidden on home page) */}
+        {!isHomePage && navigationLinks.length >= 2 && (
+          <div className="md:hidden absolute left-14 flex items-center">
+            <Link
+              href={navigationLinks[1].href}
+              className="group/nav relative block bg-slate-700/80 backdrop-blur-sm border border-slate-600/50 rounded-xl px-3 py-2 hover:bg-cyan-400 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/50"
+            >
+              <span className="text-white group-hover/nav:text-slate-900 font-mono text-xs font-semibold transition-colors duration-300 whitespace-nowrap">
+                {navigationLinks[1].label}
+              </span>
+            </Link>
+          </div>
+        )}
+
+        {/* Hover trigger area for menu (invisible, positioned to the right of home button) - Desktop only */}
         <div
-          className="absolute left-14 w-16 h-14 z-10"
+          className="hidden md:block absolute left-14 w-16 h-14 z-10"
           onMouseEnter={() => setIsExpanded(true)}
           onMouseLeave={() => setIsExpanded(false)}
         />
 
-        {/* Expandable navigation menu - only show on hover/expand */}
+        {/* Expandable navigation menu - Desktop only, shows on hover */}
         <div
-          className={`absolute top-0 left-14 flex items-center gap-3 transition-all duration-500 z-10 ${
+          className={`hidden md:flex absolute top-0 left-14 items-center gap-3 transition-all duration-500 z-10 ${
             isExpanded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'
           }`}
           onMouseEnter={() => setIsExpanded(true)}

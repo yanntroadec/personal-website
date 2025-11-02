@@ -64,9 +64,9 @@ export default function Header() {
           <div className="md:hidden absolute right-20 flex items-center">
             <Link
               href={navigationLinks[0].href}
-              className="group/nav relative block bg-slate-700/80 backdrop-blur-sm border border-slate-600/50 rounded-xl px-3 py-2 hover:bg-cyan-400 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/50"
+              className="group/nav relative block bg-slate-700/80 backdrop-blur-sm border border-slate-600/50 rounded-xl px-3 py-2 hover:bg-cyan-400 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/50 w-20"
             >
-              <span className="text-white group-hover/nav:text-slate-900 font-mono text-xs font-semibold transition-colors duration-300 whitespace-nowrap">
+              <span className="text-white group-hover/nav:text-slate-900 font-mono text-xs font-semibold transition-colors duration-300 whitespace-nowrap block text-center">
                 {navigationLinks[0].label}
               </span>
             </Link>
@@ -108,9 +108,9 @@ export default function Header() {
           <div className="md:hidden absolute left-20 flex items-center">
             <Link
               href={navigationLinks[1].href}
-              className="group/nav relative block bg-slate-700/80 backdrop-blur-sm border border-slate-600/50 rounded-xl px-3 py-2 hover:bg-cyan-400 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/50"
+              className="group/nav relative block bg-slate-700/80 backdrop-blur-sm border border-slate-600/50 rounded-xl px-3 py-2 hover:bg-cyan-400 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/50 w-20"
             >
-              <span className="text-white group-hover/nav:text-slate-900 font-mono text-xs font-semibold transition-colors duration-300 whitespace-nowrap">
+              <span className="text-white group-hover/nav:text-slate-900 font-mono text-xs font-semibold transition-colors duration-300 whitespace-nowrap block text-center">
                 {navigationLinks[1].label}
               </span>
             </Link>

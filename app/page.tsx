@@ -76,8 +76,7 @@ export default function Home() {
 
             {/* Introduction paragraph */}
             <p className="text-slate-400 text-base md:text-lg mt-6 font-mono leading-relaxed">
-              Exploring the tech landscape from systems to applications. 
-              Currently diving into backend development, networking, and infrastructure.
+              Technical support professional building expertise in backend development, networking, and infrastructure.
             </p>
             
             {/* Decorative accent line */}

@@ -66,17 +66,18 @@ export default function ProjectCarousel({
         {/* Previous Button */}
         <button
           onClick={handlePrevious}
-          className="group relative p-3 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl hover:border-cyan-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20 disabled:opacity-30 disabled:cursor-not-allowed"
+          className="group relative p-4 bg-slate-800/70 backdrop-blur-sm border-2 border-cyan-400/30 rounded-xl hover:border-cyan-400 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/40 hover:bg-slate-800/90 disabled:opacity-30 disabled:cursor-not-allowed hover:-translate-x-1"
           disabled={projectsArray.length <= 1}
           aria-label="Previous project"
         >
           <svg 
-            className="w-6 h-6 text-slate-400 group-hover:text-cyan-400 transition-colors duration-300" 
+            className="w-7 h-7 text-white group-hover:text-cyan-400 transition-colors duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
+            strokeWidth={2.5}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
@@ -100,17 +101,18 @@ export default function ProjectCarousel({
         {/* Next Button */}
         <button
           onClick={handleNext}
-          className="group relative p-3 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl hover:border-cyan-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20 disabled:opacity-30 disabled:cursor-not-allowed"
+          className="group relative p-4 bg-slate-800/70 backdrop-blur-sm border-2 border-cyan-400/30 rounded-xl hover:border-cyan-400 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/40 hover:bg-slate-800/90 disabled:opacity-30 disabled:cursor-not-allowed hover:translate-x-1"
           disabled={projectsArray.length <= 1}
           aria-label="Next project"
         >
           <svg 
-            className="w-6 h-6 text-slate-400 group-hover:text-cyan-400 transition-colors duration-300" 
+            className="w-7 h-7 text-white group-hover:text-cyan-400 transition-colors duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
+            strokeWidth={2.5}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </button>
       </div>
@@ -166,7 +168,7 @@ export default function ProjectCarousel({
 
       {/* Project Counter */}
       <div className="text-center mt-4">
-        <span className="text-slate-500 font-mono text-sm">
+        <span className="text-white font-mono text-sm font-semibold">
           {currentIndex + 1} / {projectsArray.length}
         </span>
       </div>

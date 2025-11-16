@@ -56,15 +56,19 @@ interface FileNode {
  * Fetches and displays GitHub repository information with stats and topics.
  * Shows loading state and error handling.
  */
-export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
+export default function GitHubRepoPreview({ repoUrl, isVisible = true }: { repoUrl: string; isVisible?: boolean }) {
   const [repo, setRepo] = useState<GitHubRepo | null>(null)
   const [fileTree, setFileTree] = useState<FileNode | null>(null)
   const [showTree, setShowTree] = useState(false)
   const [loading, setLoading] = useState(true)
   const [treeLoading, setTreeLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [hasLoaded, setHasLoaded] = useState(false)
 
   useEffect(() => {
+    // Only fetch when visible and not already loaded
+    if (!isVisible || hasLoaded) return
+
     async function fetchRepo() {
       try {
         // Extract owner and repo name from GitHub URL
@@ -83,6 +87,7 @@ export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
 
         const data = await response.json()
         setRepo(data)
+        setHasLoaded(true)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred')
       } finally {
@@ -91,7 +96,7 @@ export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
     }
 
     fetchRepo()
-  }, [repoUrl])
+  }, [repoUrl, isVisible, hasLoaded])
 
   // Fetch file tree when user toggles the tree view
   async function fetchFileTree() {

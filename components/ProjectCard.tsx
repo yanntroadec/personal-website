@@ -1,8 +1,10 @@
 'use client'
 
+import React from 'react'
+
 /**
  * ProjectCard Component
- * 
+ *
  * Displays a project card with title, description, optional GitHub link,
  * and custom content. Features hover effects and responsive design.
  */
@@ -21,6 +23,11 @@ export default function ProjectCard({
   isActive?: boolean
   onClick?: () => void
 }) {
+  // Clone children and pass isVisible prop to GitHubRepoPreview
+  const enhancedChildren = React.isValidElement(children)
+    ? React.cloneElement(children as React.ReactElement<any>, { isVisible: isActive })
+    : children
+
   return (
     <div
       onClick={onClick}
@@ -74,7 +81,7 @@ export default function ProjectCard({
         
         {/* Custom content area with minimum height */}
         <div className="text-slate-300 min-h-[450px]">
-          {children}
+          {enhancedChildren}
         </div>
       </div>
     </div>

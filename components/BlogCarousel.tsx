@@ -172,7 +172,7 @@ export default function BlogCarousel({
         </button>
       </div>
 
-      {/* Mobile: Swipeable carousel with progressive scroll and infinite loop */}
+      {/* Mobile: Swipeable carousel with progressive scroll */}
       <div
         className="md:hidden overflow-hidden"
         onTouchStart={onTouchStart}
@@ -182,14 +182,9 @@ export default function BlogCarousel({
         <div
           className={`flex ${isDragging ? '' : 'transition-transform duration-500 ease-out'}`}
           style={{
-            transform: `translateX(calc(-${(currentIndex + 1) * 100}% + ${dragOffset}px))`
+            transform: `translateX(calc(-${currentIndex * 100}% + ${dragOffset}px))`
           }}
         >
-          {/* Clone last article at the beginning for infinite scroll */}
-          <div className="w-full flex-shrink-0 px-4">
-            {articlesWithActiveState[articlesArray.length - 1]}
-          </div>
-
           {/* Render all articles */}
           {articlesWithActiveState.map((article, index) => (
             <div
@@ -199,11 +194,6 @@ export default function BlogCarousel({
               {article}
             </div>
           ))}
-
-          {/* Clone first article at the end for infinite scroll */}
-          <div className="w-full flex-shrink-0 px-4">
-            {articlesWithActiveState[0]}
-          </div>
         </div>
 
         {/* Swipe instruction hint - shows on first load */}

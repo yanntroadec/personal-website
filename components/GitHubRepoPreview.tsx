@@ -56,19 +56,15 @@ interface FileNode {
  * Fetches and displays GitHub repository information with stats and topics.
  * Shows loading state and error handling.
  */
-export default function GitHubRepoPreview({ repoUrl, isVisible = true }: { repoUrl: string; isVisible?: boolean }) {
+export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
   const [repo, setRepo] = useState<GitHubRepo | null>(null)
   const [fileTree, setFileTree] = useState<FileNode | null>(null)
   const [showTree, setShowTree] = useState(false)
   const [loading, setLoading] = useState(true)
   const [treeLoading, setTreeLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [hasLoaded, setHasLoaded] = useState(false)
 
   useEffect(() => {
-    // Only fetch when visible and not already loaded
-    if (!isVisible || hasLoaded) return
-
     async function fetchRepo() {
       try {
         // Extract owner and repo name from GitHub URL
@@ -80,14 +76,20 @@ export default function GitHubRepoPreview({ repoUrl, isVisible = true }: { repoU
         const [, owner, repoName] = match
         const apiUrl = `https://api.github.com/repos/${owner}/${repoName}`
 
-        const response = await fetch(apiUrl)
+        // Add GitHub token if available
+        const headers: HeadersInit = {}
+        const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN
+        if (token) {
+          headers['Authorization'] = `Bearer ${token}`
+        }
+
+        const response = await fetch(apiUrl, { headers })
         if (!response.ok) {
           throw new Error('Failed to fetch repository')
         }
 
         const data = await response.json()
         setRepo(data)
-        setHasLoaded(true)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred')
       } finally {
@@ -96,12 +98,12 @@ export default function GitHubRepoPreview({ repoUrl, isVisible = true }: { repoU
     }
 
     fetchRepo()
-  }, [repoUrl, isVisible, hasLoaded])
+  }, [repoUrl])
 
   // Fetch file tree when user toggles the tree view
   async function fetchFileTree() {
     if (fileTree || !repo) return // Already loaded or no repo data
-    
+
     setTreeLoading(true)
     try {
       const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/)
@@ -110,7 +112,14 @@ export default function GitHubRepoPreview({ repoUrl, isVisible = true }: { repoU
       const [, owner, repoName] = match
       const treeUrl = `https://api.github.com/repos/${owner}/${repoName}/git/trees/${repo.default_branch}?recursive=1`
 
-      const response = await fetch(treeUrl)
+      // Add GitHub token if available
+      const headers: HeadersInit = {}
+      const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`
+      }
+
+      const response = await fetch(treeUrl, { headers })
       if (!response.ok) throw new Error('Failed to fetch file tree')
 
       const data = await response.json()

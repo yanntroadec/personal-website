@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 /**
  * ProjectCard Component
  *
@@ -23,11 +21,6 @@ export default function ProjectCard({
   isActive?: boolean
   onClick?: () => void
 }) {
-  // Clone children and pass isVisible prop to GitHubRepoPreview
-  const enhancedChildren = React.isValidElement(children)
-    ? React.cloneElement(children as React.ReactElement<any>, { isVisible: isActive })
-    : children
-
   return (
     <div
       onClick={onClick}
@@ -81,7 +74,7 @@ export default function ProjectCard({
         
         {/* Custom content area with minimum height */}
         <div className="text-slate-300 min-h-[450px]">
-          {enhancedChildren}
+          {children}
         </div>
       </div>
     </div>

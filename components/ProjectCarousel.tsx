@@ -179,7 +179,7 @@ export default function ProjectCarousel({
         </button>
       </div>
 
-      {/* Mobile: Swipeable carousel */}
+      {/* Mobile: Swipeable carousel with infinite loop */}
       <div
         className="md:hidden overflow-hidden"
         onTouchStart={onTouchStart}
@@ -188,8 +188,14 @@ export default function ProjectCarousel({
       >
         <div
           className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          style={{ transform: `translateX(-${(currentIndex + projectsArray.length) * 100}%)` }}
         >
+          {/* Clone last project at the beginning for infinite scroll */}
+          <div className="w-full flex-shrink-0 px-4">
+            {projectsArray[projectsArray.length - 1]}
+          </div>
+
+          {/* Render all projects */}
           {projectsWithActiveState.map((project, index) => (
             <div
               key={index}
@@ -198,6 +204,11 @@ export default function ProjectCarousel({
               {project}
             </div>
           ))}
+
+          {/* Clone first project at the end for infinite scroll */}
+          <div className="w-full flex-shrink-0 px-4">
+            {projectsArray[0]}
+          </div>
         </div>
 
         {/* Swipe instruction hint - shows on first load */}

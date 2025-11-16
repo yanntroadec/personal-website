@@ -182,12 +182,12 @@ export default function BlogCarousel({
         <div
           className={`flex ${isDragging ? '' : 'transition-transform duration-500 ease-out'}`}
           style={{
-            transform: `translateX(calc(-${(currentIndex + articlesArray.length) * 100}% + ${dragOffset}px))`
+            transform: `translateX(calc(-${(currentIndex + 1) * 100}% + ${dragOffset}px))`
           }}
         >
           {/* Clone last article at the beginning for infinite scroll */}
           <div className="w-full flex-shrink-0 px-4">
-            {articlesArray[articlesArray.length - 1]}
+            {articlesWithActiveState[articlesArray.length - 1]}
           </div>
 
           {/* Render all articles */}
@@ -202,7 +202,7 @@ export default function BlogCarousel({
 
           {/* Clone first article at the end for infinite scroll */}
           <div className="w-full flex-shrink-0 px-4">
-            {articlesArray[0]}
+            {articlesWithActiveState[0]}
           </div>
         </div>
 

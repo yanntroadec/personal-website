@@ -4,6 +4,7 @@ import Link from "next/link"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import ArticleCard from "../../components/ArticleCard"
+import BlogCarousel from "../../components/BlogCarousel"
 import FloatingParticles from "../../components/FloatingParticles"
 
 /**
@@ -41,14 +42,22 @@ export default function Blog() {
           </p>
         </div>
 
-        {/* Article list */}
-        <div className="mt-8 max-w-4xl w-full space-y-6">
-          <ArticleCard
-            title="Cisco SSH Deep Dive: How to Secure, Configure, and Harden Remote Access"
-            date="2025-11-01"
-            excerpt="Deep dive into SSH configuration and security best practices on Cisco routers and switches."
-            link="/blog/ssh-configuration"
-          />
+        {/* Article carousel */}
+        <div className="mt-8 w-full flex justify-center">
+          <BlogCarousel defaultIndex={0}>
+            <ArticleCard
+              title="Cisco IOS Fundamentals and Advanced Techniques"
+              date="2025-11-16"
+              excerpt="Master the essentials of Cisco IOS with comprehensive coverage of navigation, configuration modes, and advanced command-line techniques."
+              link="/blog/ios-fundamentals-advanced"
+            />
+            <ArticleCard
+              title="Cisco SSH Deep Dive: How to Secure, Configure, and Harden Remote Access"
+              date="2025-11-01"
+              excerpt="Deep dive into SSH configuration and security best practices on Cisco routers and switches."
+              link="/blog/ssh-configuration"
+            />
+          </BlogCarousel>
         </div>
       </div>
 

@@ -33,28 +33,28 @@ export default function BlogCarousel({
     setCurrentIndex((prev) => (prev === articlesArray.length - 1 ? 0 : prev + 1))
   }
 
-  // Handle touch start (vertical)
+  // Handle touch start (horizontal)
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientY)
+    setTouchStart(e.targetTouches[0].clientX)
   }
 
-  // Handle touch move (vertical)
+  // Handle touch move (horizontal)
   const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientY)
+    setTouchEnd(e.targetTouches[0].clientX)
   }
 
-  // Handle touch end (vertical)
+  // Handle touch end (horizontal)
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return
 
     const distance = touchStart - touchEnd
-    const isUpSwipe = distance > minSwipeDistance
-    const isDownSwipe = distance < -minSwipeDistance
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
 
-    if (isUpSwipe) {
+    if (isLeftSwipe) {
       handleNext()
-    } else if (isDownSwipe) {
+    } else if (isRightSwipe) {
       handlePrevious()
     }
   }
@@ -116,11 +116,11 @@ export default function BlogCarousel({
 
         {/* Swipe instruction hint - shows on first load */}
         <div className="text-center mt-4 text-slate-500 font-mono text-xs flex items-center justify-center gap-2">
-          <svg className="w-4 h-4 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
           </svg>
           Swipe to navigate
-          <svg className="w-4 h-4 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </div>

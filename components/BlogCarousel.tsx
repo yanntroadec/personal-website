@@ -18,6 +18,8 @@ export default function BlogCarousel({
 }) {
   const [currentIndex, setCurrentIndex] = useState(defaultIndex)
   const [focusMode, setFocusMode] = useState(false)
+  const [isDragging, setIsDragging] = useState(false)
+  const [dragOffset, setDragOffset] = useState(0)
   const articlesArray = Array.isArray(children) ? children : [children]
 
   // Handle card click - make the card active when clicked or enter focus mode
@@ -70,15 +72,26 @@ export default function BlogCarousel({
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null)
     setTouchStart(e.targetTouches[0].clientX)
+    setIsDragging(true)
   }
 
   // Handle touch move (horizontal)
   const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
+    if (!touchStart) return
+
+    const currentTouch = e.targetTouches[0].clientX
+    setTouchEnd(currentTouch)
+
+    // Calculate drag offset for smooth scrolling
+    const offset = currentTouch - touchStart
+    setDragOffset(offset)
   }
 
   // Handle touch end (horizontal)
   const onTouchEnd = () => {
+    setIsDragging(false)
+    setDragOffset(0)
+
     if (!touchStart || !touchEnd) return
 
     const distance = touchStart - touchEnd
@@ -153,14 +166,28 @@ export default function BlogCarousel({
         </button>
       </div>
 
-      {/* Mobile: Swipeable carousel - Show only current article */}
+      {/* Mobile: Swipeable carousel with progressive scroll */}
       <div
-        className="md:hidden"
+        className="md:hidden overflow-hidden"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        {articlesWithActiveState[currentIndex]}
+        <div
+          className={`flex ${isDragging ? '' : 'transition-transform duration-500 ease-out'}`}
+          style={{
+            transform: `translateX(calc(-${currentIndex * 100}% + ${dragOffset}px))`
+          }}
+        >
+          {articlesWithActiveState.map((article, index) => (
+            <div
+              key={index}
+              className="w-full flex-shrink-0 px-4"
+            >
+              {article}
+            </div>
+          ))}
+        </div>
 
         {/* Swipe instruction hint - shows on first load */}
         <div className="text-center mt-4 text-slate-500 font-mono text-xs flex items-center justify-center gap-2">

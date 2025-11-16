@@ -60,7 +60,6 @@ export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
   const [repo, setRepo] = useState<GitHubRepo | null>(null)
   const [fileTree, setFileTree] = useState<FileNode | null>(null)
   const [showTree, setShowTree] = useState(false)
-  const [loading, setLoading] = useState(true)
   const [treeLoading, setTreeLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -92,8 +91,6 @@ export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
         setRepo(data)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred')
-      } finally {
-        setLoading(false)
       }
     }
 
@@ -179,18 +176,6 @@ export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
       fetchFileTree()
     }
     setShowTree(!showTree)
-  }
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="flex flex-col items-center gap-3">
-          {/* Loading spinner */}
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-cyan-400"></div>
-          <span className="text-slate-400 font-mono text-sm">Loading repository...</span>
-        </div>
-      </div>
-    )
   }
 
   if (error || !repo) {

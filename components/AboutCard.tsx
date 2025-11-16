@@ -37,7 +37,7 @@ export default function AboutCard() {
   }
 
   return (
-    <div className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 md:p-12 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/10 w-full max-w-3xl">
+    <div className="group relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 shadow-lg shadow-cyan-400/20 rounded-xl p-8 md:p-12 hover:border-cyan-300 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/10 w-full max-w-3xl">
       {/* Hover glow effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
       

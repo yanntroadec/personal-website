@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import React from 'react'
 
 /**
  * BlogCarousel Component
@@ -16,7 +17,37 @@ export default function BlogCarousel({
   defaultIndex?: number
 }) {
   const [currentIndex, setCurrentIndex] = useState(defaultIndex)
+  const [focusMode, setFocusMode] = useState(false)
   const articlesArray = Array.isArray(children) ? children : [children]
+
+  // Handle card click - make the card active when clicked or enter focus mode
+  const handleCardClick = (index: number) => {
+    if (index === currentIndex) {
+      // If clicking active card, enter focus mode (hide other cards)
+      setFocusMode(true)
+    } else {
+      // If clicking inactive card, make it active
+      setCurrentIndex(index)
+    }
+  }
+
+  // Add active state and click handler to child articles
+  const articlesWithActiveState = articlesArray.map((article, index) => {
+    if (React.isValidElement(article)) {
+      const props: any = {
+        isActive: index === currentIndex
+      }
+
+      // Add onClick for all cards
+      props.onCardClick = (e: React.MouseEvent) => {
+        e.preventDefault()
+        handleCardClick(index)
+      }
+
+      return React.cloneElement(article as React.ReactElement<any>, props)
+    }
+    return article
+  })
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
@@ -26,11 +57,13 @@ export default function BlogCarousel({
   // Navigate to previous article
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? articlesArray.length - 1 : prev - 1))
+    setFocusMode(false) // Exit focus mode when navigating
   }
 
   // Navigate to next article
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === articlesArray.length - 1 ? 0 : prev + 1))
+    setFocusMode(false) // Exit focus mode when navigating
   }
 
   // Handle touch start (horizontal)
@@ -81,9 +114,24 @@ export default function BlogCarousel({
           </svg>
         </button>
 
-        {/* Article Display - Show only current article */}
-        <div className="w-full">
-          {articlesArray[currentIndex]}
+        {/* Article Display with previews */}
+        <div className="w-full relative">
+          <div className="flex flex-col items-center gap-4">
+            {/* Current article (full opacity) */}
+            <div className="w-full transition-all duration-500">
+              {articlesWithActiveState[currentIndex]}
+            </div>
+
+            {/* Next article preview (semi-transparent) - only show below, clickable, hidden in focus mode */}
+            {articlesArray.length > 1 && !focusMode && (
+              <div
+                onClick={() => handleCardClick(currentIndex === articlesArray.length - 1 ? 0 : currentIndex + 1)}
+                className="hidden lg:block w-full opacity-35 cursor-pointer hover:opacity-50 transition-all duration-500"
+              >
+                {articlesArray[currentIndex === articlesArray.length - 1 ? 0 : currentIndex + 1]}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Next Button (Down Arrow) */}
@@ -112,7 +160,7 @@ export default function BlogCarousel({
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        {articlesArray[currentIndex]}
+        {articlesWithActiveState[currentIndex]}
 
         {/* Swipe instruction hint - shows on first load */}
         <div className="text-center mt-4 text-slate-500 font-mono text-xs flex items-center justify-center gap-2">

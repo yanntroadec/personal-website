@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import React from 'react'
+import { useRouter } from 'next/navigation'
 
 /**
  * ProjectCarousel Component
@@ -8,15 +10,46 @@ import { useState, useRef, useEffect } from 'react'
  * Displays projects in a carousel format with navigation arrows.
  * Only one project is visible at a time with smooth transitions.
  */
-export default function ProjectCarousel({ 
+export default function ProjectCarousel({
   children,
   defaultIndex = 0
-}: { 
+}: {
   children: React.ReactNode[]
   defaultIndex?: number
 }) {
+  const router = useRouter()
   const [currentIndex, setCurrentIndex] = useState(defaultIndex)
+  const [focusMode, setFocusMode] = useState(false)
   const projectsArray = Array.isArray(children) ? children : [children]
+
+  // Project URLs mapping
+  const projectUrls = [
+    '/projects/personal-website',
+    '/projects/caesar-cipher',
+    '/projects/packet-tracer-labs'
+  ]
+
+  // Handle card click
+  const handleCardClick = (index: number) => {
+    if (index === currentIndex) {
+      // If clicking active card, enter focus mode (hide other cards)
+      setFocusMode(true)
+    } else {
+      // If clicking inactive card, make it active
+      setCurrentIndex(index)
+    }
+  }
+
+  // Add active state and click handler to child projects
+  const projectsWithActiveState = projectsArray.map((project, index) => {
+    if (React.isValidElement(project)) {
+      return React.cloneElement(project as React.ReactElement<any>, {
+        isActive: index === currentIndex,
+        onClick: () => handleCardClick(index)
+      })
+    }
+    return project
+  })
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
@@ -26,11 +59,13 @@ export default function ProjectCarousel({
   // Navigate to previous project
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? projectsArray.length - 1 : prev - 1))
+    setFocusMode(false) // Exit focus mode when navigating
   }
 
   // Navigate to next project
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === projectsArray.length - 1 ? 0 : prev + 1))
+    setFocusMode(false) // Exit focus mode when navigating
   }
 
   // Handle touch start
@@ -81,20 +116,47 @@ export default function ProjectCarousel({
           </svg>
         </button>
 
-        {/* Project Display */}
-        <div className="flex-1 overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {projectsArray.map((project, index) => (
-              <div 
-                key={index} 
-                className="w-full flex-shrink-0 flex justify-center px-4"
+        {/* Project Display with 3D carousel effect */}
+        <div className="flex-1 overflow-visible relative" style={{ perspective: '2000px' }}>
+          <div className="flex items-center justify-center gap-8 relative">
+            {/* Previous project preview (rotated left, 3D depth) - Clickable, hidden in focus mode */}
+            {projectsArray.length > 1 && !focusMode && (
+              <div
+                onClick={() => handleCardClick(currentIndex === 0 ? projectsArray.length - 1 : currentIndex - 1)}
+                className="hidden lg:block flex-shrink-0 opacity-35 cursor-pointer hover:opacity-50 transition-all duration-500"
+                style={{
+                  transform: 'rotateY(45deg) scale(0.85) translateZ(-200px) translateX(-50px)',
+                  transformStyle: 'preserve-3d'
+                }}
               >
-                {project}
+                {projectsArray[currentIndex === 0 ? projectsArray.length - 1 : currentIndex - 1]}
               </div>
-            ))}
+            )}
+
+            {/* Current project (centered, no rotation) */}
+            <div
+              className="flex-shrink-0 transition-all duration-500 relative z-10"
+              style={{
+                transform: 'rotateY(0deg) scale(1) translateZ(0px)',
+                transformStyle: 'preserve-3d'
+              }}
+            >
+              {projectsWithActiveState[currentIndex]}
+            </div>
+
+            {/* Next project preview (rotated right, 3D depth) - Clickable, hidden in focus mode */}
+            {projectsArray.length > 1 && !focusMode && (
+              <div
+                onClick={() => handleCardClick(currentIndex === projectsArray.length - 1 ? 0 : currentIndex + 1)}
+                className="hidden lg:block flex-shrink-0 opacity-35 cursor-pointer hover:opacity-50 transition-all duration-500"
+                style={{
+                  transform: 'rotateY(-45deg) scale(0.85) translateZ(-200px) translateX(50px)',
+                  transformStyle: 'preserve-3d'
+                }}
+              >
+                {projectsArray[currentIndex === projectsArray.length - 1 ? 0 : currentIndex + 1]}
+              </div>
+            )}
           </div>
         </div>
 
@@ -118,19 +180,19 @@ export default function ProjectCarousel({
       </div>
 
       {/* Mobile: Swipeable carousel */}
-      <div 
+      <div
         className="md:hidden overflow-hidden"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <div 
+        <div
           className="flex transition-transform duration-500 ease-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {projectsArray.map((project, index) => (
-            <div 
-              key={index} 
+          {projectsWithActiveState.map((project, index) => (
+            <div
+              key={index}
               className="w-full flex-shrink-0 px-4"
             >
               {project}

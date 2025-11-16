@@ -1,6 +1,7 @@
 'use client'
 
 import { ReactNode } from 'react'
+import Link from 'next/link'
 import Header from './Header'
 import Footer from './Footer'
 import FloatingParticles from './FloatingParticles'
@@ -33,6 +34,19 @@ export default function BlogArticle({ title, date, readTime = "5 min read", chil
       {/* Article container */}
       <div className="flex-1 flex flex-col items-center px-6 py-16 relative z-10">
         <article className="max-w-4xl w-full">
+          {/* Back to Blog link */}
+          <div className="mb-8">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-mono text-sm transition-colors duration-300"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Blog
+            </Link>
+          </div>
+
           {/* Article header with metadata */}
           <header className="mb-12">
             {/* Main title */}

@@ -6,19 +6,30 @@
  * Displays a project card with title, description, optional GitHub link,
  * and custom content. Features hover effects and responsive design.
  */
-export default function ProjectCard({ 
-  title, 
-  description, 
+export default function ProjectCard({
+  title,
+  description,
   children,
-  githubUrl 
-}: { 
+  githubUrl,
+  isActive = false,
+  onClick
+}: {
   title: string
   description: string
   children: React.ReactNode
   githubUrl?: string
+  isActive?: boolean
+  onClick?: () => void
 }) {
   return (
-    <div className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-xl p-8 hover:border-cyan-400/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/10 w-full md:max-w-2xl lg:max-w-3xl">
+    <div
+      onClick={onClick}
+      className={`group relative bg-slate-800/50 backdrop-blur-sm border-2 rounded-xl p-8 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/10 w-full md:max-w-2xl lg:max-w-3xl ${
+        isActive
+          ? 'border-cyan-400 shadow-lg shadow-cyan-400/20 hover:border-cyan-300'
+          : 'border-slate-700/50 hover:border-cyan-400/50'
+      } ${onClick ? 'cursor-pointer' : ''}`}
+    >
       {/* Hover glow effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>
       

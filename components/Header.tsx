@@ -59,20 +59,6 @@ export default function Header() {
   return (
     <div className="w-full flex justify-center pt-8 z-50 relative">
       <div className="relative flex items-center">
-        {/* Left navigation link (mobile only, hidden on home page) */}
-        {!isHomePage && navigationLinks.length >= 1 && (
-          <div className="md:hidden absolute right-20 flex items-center">
-            <Link
-              href={navigationLinks[0].href}
-              className="group/nav relative block bg-slate-700/80 backdrop-blur-sm border border-slate-600/50 rounded-xl px-3 py-2 hover:bg-cyan-400 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/50 w-20"
-            >
-              <span className="text-white group-hover/nav:text-slate-900 font-mono text-xs font-semibold transition-colors duration-300 whitespace-nowrap block text-center">
-                {navigationLinks[0].label}
-              </span>
-            </Link>
-          </div>
-        )}
-
         {/* Main home button (always visible and clickable to return home) */}
         <Link
           href="/"
@@ -91,7 +77,7 @@ export default function Header() {
               height: 56,
             }}
           ></div>
-          
+
           {/* Terminal icon (counter-rotated to stay upright) */}
           <span className="absolute inset-0 flex items-center justify-center text-white group-hover:text-slate-900 transition-colors duration-300">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
@@ -102,20 +88,6 @@ export default function Header() {
             </svg>
           </span>
         </Link>
-
-        {/* Right navigation link (mobile only, hidden on home page) */}
-        {!isHomePage && navigationLinks.length >= 2 && (
-          <div className="md:hidden absolute left-20 flex items-center">
-            <Link
-              href={navigationLinks[1].href}
-              className="group/nav relative block bg-slate-700/80 backdrop-blur-sm border border-slate-600/50 rounded-xl px-3 py-2 hover:bg-cyan-400 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/50 w-20"
-            >
-              <span className="text-white group-hover/nav:text-slate-900 font-mono text-xs font-semibold transition-colors duration-300 whitespace-nowrap block text-center">
-                {navigationLinks[1].label}
-              </span>
-            </Link>
-          </div>
-        )}
 
         {/* Hover trigger area for menu (invisible, positioned to the right of home button) - Desktop only */}
         <div

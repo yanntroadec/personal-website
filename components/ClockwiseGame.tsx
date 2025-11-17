@@ -208,22 +208,22 @@ export default function ClockwiseGame() {
 
       {/* Difficulty Selection - Only visible when game is not running */}
       {!isRunning && (
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-2 md:gap-4">
           <button
             onClick={() => initializeGame(4)}
-            className="px-6 py-3 bg-emerald-300 hover:bg-emerald-200 text-slate-800 font-bold font-mono rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-emerald-300/50"
+            className="px-3 py-2 md:px-6 md:py-3 bg-emerald-300 hover:bg-emerald-200 text-slate-800 font-bold font-mono text-xs md:text-base rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-emerald-300/50"
           >
             Easy
           </button>
           <button
             onClick={() => initializeGame(2)}
-            className="px-6 py-3 bg-amber-300 hover:bg-amber-200 text-slate-800 font-bold font-mono rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-amber-300/50"
+            className="px-3 py-2 md:px-6 md:py-3 bg-amber-300 hover:bg-amber-200 text-slate-800 font-bold font-mono text-xs md:text-base rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-amber-300/50"
           >
             Medium
           </button>
           <button
             onClick={() => initializeGame(1)}
-            className="px-6 py-3 bg-rose-300 hover:bg-rose-200 text-slate-800 font-bold font-mono rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-rose-300/50"
+            className="px-3 py-2 md:px-6 md:py-3 bg-rose-300 hover:bg-rose-200 text-slate-800 font-bold font-mono text-xs md:text-base rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-rose-300/50"
           >
             Hard
           </button>
@@ -242,7 +242,6 @@ export default function ClockwiseGame() {
 
           return (
             <div key={wheelIdx} className="flex flex-col items-center space-y-3">
-              <div className="text-slate-400 font-mono text-xs">#{wheelIdx + 1}</div>
               <div className="relative w-24 h-24 md:w-28 md:h-28">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                   {sequence.map((color, idx) => {
@@ -297,7 +296,6 @@ export default function ClockwiseGame() {
 
             return (
               <div key={wheelIdx} className="flex flex-col items-center space-y-2">
-                <div className="text-slate-400 font-mono text-xs">#{wheelIdx + 1}</div>
                 <div className="relative w-20 h-20">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
                     {sequence.map((color, idx) => {
@@ -348,7 +346,6 @@ export default function ClockwiseGame() {
 
             return (
               <div key={wheelIdx} className="flex flex-col items-center space-y-2">
-                <div className="text-slate-400 font-mono text-xs">#{wheelIdx + 1}</div>
                 <div className="relative w-20 h-20">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
                     {sequence.map((color, idx) => {
@@ -403,28 +400,28 @@ export default function ClockwiseGame() {
 
       {/* Game Rules - Only visible when game is not running */}
       {!isRunning && (
-        <div className="mt-8 bg-slate-800/30 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
-          <h3 className="text-xl font-bold font-mono text-cyan-400 mb-4 text-center">How to Play</h3>
-          <div className="space-y-3 text-slate-300 font-mono text-sm">
-            <div className="flex items-start gap-2">
-              <span className="text-cyan-400 font-bold">Goal:</span>
-              <span>Reduce the counter to 0 by aligning the colored wheels before time runs out.</span>
+        <div className="mt-8 bg-slate-800/30 backdrop-blur-sm border border-slate-700 rounded-xl p-4 md:p-6">
+          <h3 className="text-lg md:text-xl font-bold font-mono text-cyan-400 mb-4 text-center">How to Play</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-300 font-mono text-xs md:text-sm">
+            <div className="text-center md:text-left">
+              <div className="text-cyan-400 font-bold mb-1">Goal</div>
+              <div>Reduce the counter to 0 by aligning the colored wheels before time runs out.</div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="text-cyan-400 font-bold">Controls:</span>
-              <span>Click "Next" under each wheel to manually advance it, or let them auto-rotate.</span>
+            <div className="text-center md:text-left">
+              <div className="text-cyan-400 font-bold mb-1">Controls</div>
+              <div>Click "Next" under each wheel to manually advance it, or let them auto-rotate.</div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="text-cyan-400 font-bold">Scoring:</span>
+            <div className="text-center md:text-left">
+              <div className="text-cyan-400 font-bold mb-1">Scoring</div>
               <div>
-                <div>• Align 3 wheels: <span className="text-green-400">-1 second</span></div>
-                <div>• Align 4 wheels: <span className="text-yellow-400">-10 seconds</span></div>
-                <div>• Align 5 wheels: <span className="text-red-400">-60 seconds!</span></div>
+                <div>• 3 wheels: <span className="text-green-400">-1s</span></div>
+                <div>• 4 wheels: <span className="text-yellow-400">-10s</span></div>
+                <div>• 5 wheels: <span className="text-red-400">-60s!</span></div>
               </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="text-cyan-400 font-bold">Strategy:</span>
-              <span>Odd wheels rotate clockwise, even wheels counter-clockwise. Timing is key!</span>
+            <div className="text-center md:text-left">
+              <div className="text-cyan-400 font-bold mb-1">Strategy</div>
+              <div>Odd wheels rotate clockwise, even wheels counter-clockwise. Timing is key!</div>
             </div>
           </div>
         </div>

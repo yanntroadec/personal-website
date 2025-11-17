@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import React from 'react'
 
 /**
@@ -22,28 +22,11 @@ export default function BlogCarousel({
   const [dragOffset, setDragOffset] = useState(0)
   const articlesArray = Array.isArray(children) ? children : [children]
 
-  // Handle card click - make the card active when clicked or enter focus mode
-  const handleCardClick = (index: number) => {
-    if (index === currentIndex) {
-      // If clicking active card, enter focus mode (hide other cards)
-      setFocusMode(true)
-    } else {
-      // If clicking inactive card, make it active
-      setCurrentIndex(index)
-    }
-  }
-
-  // Add active state and click handler to child articles
+  // Add active state to child articles without blocking navigation
   const articlesWithActiveState = articlesArray.map((article, index) => {
     if (React.isValidElement(article)) {
       const props: any = {
         isActive: index === currentIndex
-      }
-
-      // Add onClick for all cards
-      props.onCardClick = (e: React.MouseEvent) => {
-        e.preventDefault()
-        handleCardClick(index)
       }
 
       return React.cloneElement(article as React.ReactElement<any>, props)
@@ -141,13 +124,10 @@ export default function BlogCarousel({
               {articlesWithActiveState[currentIndex]}
             </div>
 
-            {/* Next article preview (semi-transparent) - only show below, clickable, hidden in focus mode */}
+            {/* Next article preview (semi-transparent) - only show below, hidden in focus mode */}
             {articlesArray.length > 1 && !focusMode && (
-              <div
-                onClick={() => handleCardClick(currentIndex === articlesArray.length - 1 ? 0 : currentIndex + 1)}
-                className="hidden lg:block w-full opacity-35 cursor-pointer hover:opacity-50 transition-all duration-500"
-              >
-                {articlesArray[currentIndex === articlesArray.length - 1 ? 0 : currentIndex + 1]}
+              <div className="hidden lg:block w-full opacity-35 hover:opacity-50 transition-all duration-500">
+                {articlesWithActiveState[currentIndex === articlesArray.length - 1 ? 0 : currentIndex + 1]}
               </div>
             )}
           </div>

@@ -13,25 +13,22 @@ export default function ArticleCard({
   date,
   excerpt,
   link,
-  isActive = false,
-  onCardClick
+  isActive = false
 }: {
   title: string
   date: string
   excerpt: string
   link: string
   isActive?: boolean
-  onCardClick?: (e: React.MouseEvent) => void
 }) {
   return (
     <Link
       href={link || "#"}
-      onClick={onCardClick}
       className={`group relative block bg-slate-800/50 backdrop-blur-sm border-2 rounded-xl p-6 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/10 ${
         isActive
           ? 'border-cyan-400 shadow-lg shadow-cyan-400/20 hover:border-cyan-300'
           : 'border-slate-700/50 hover:border-cyan-400/50'
-      } ${onCardClick ? 'cursor-pointer' : ''}`}
+      }`}
     >
       {/* Hover glow effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl pointer-events-none"></div>

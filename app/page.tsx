@@ -90,7 +90,7 @@ export default function Home() {
             {/* Projects navigation card - Left aligned */}
             <div className="md:mr-20">
               <Link href="/projects" className="group relative block w-full">
-                <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-slate-700/50 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-400/20 hover:-translate-y-1">
+                <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 
@@ -133,7 +133,7 @@ export default function Home() {
             {/* Blog navigation card - Right aligned */}
             <div className="md:ml-20">
               <Link href="/blog" className="group relative block w-full">
-                <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-slate-700/50 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-400/20 hover:-translate-y-1">
+                <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 
@@ -176,7 +176,7 @@ export default function Home() {
             {/* About navigation card - Left aligned */}
             <div className="md:mr-20">
               <Link href="/about" className="group relative block w-full">
-                <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-slate-700/50 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-400/20 hover:-translate-y-1">
+                <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 

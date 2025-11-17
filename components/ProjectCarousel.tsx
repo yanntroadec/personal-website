@@ -26,6 +26,7 @@ export default function ProjectCarousel({
   const projectUrls = [
     '/projects/personal-website',
     '/projects/caesar-cipher',
+    '/projects/clockwise',
     '/projects/packet-tracer-labs'
   ]
 

@@ -1,6 +1,5 @@
 'use client'
 
-import Link from "next/link"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import ArticleCard from "../../components/ArticleCard"
@@ -45,6 +44,12 @@ export default function Blog() {
         {/* Article carousel */}
         <div className="mt-8 w-full flex justify-center">
           <BlogCarousel defaultIndex={0}>
+            <ArticleCard
+              title="VLAN Configuration Essentials: Segmenting Your Network"
+              date="2025-11-17"
+              excerpt="Comprehensive guide on configuring VLANs on Cisco switches, covering VLAN basics, trunking, and best practices for network segmentation."
+              link="/blog/vlan-configuration"
+            />
             <ArticleCard
               title="Cisco IOS Fundamentals and Advanced Techniques"
               date="2025-11-16"

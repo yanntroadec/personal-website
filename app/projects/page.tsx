@@ -4,16 +4,17 @@ import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import ProjectCard from "../../components/ProjectCard"
 import CaesarToolkit from "../../components/CaesarToolkit"
+import ClockwiseGame from "../../components/ClockwiseGame"
 import GitHubRepoPreview from "../../components/GitHubRepoPreview"
 import ProjectCarousel from "../../components/ProjectCarousel"
 import FloatingParticles from "../../components/FloatingParticles"
 
 /**
  * Projects Page Component
- * 
+ *
  * Interactive projects showcase featuring:
  * - Horizontal carousel navigation with arrow controls
- * - Three projects: Personal Website, Caesar Cipher, Packet Tracer Labs
+ * - Four projects: Personal Website, Caesar Cipher, Clockwise Game, Packet Tracer Labs
  * - GitHub repository integration with expandable file tree
  * - Caesar Cipher decoder as default displayed project
  * - Uniform card sizing with adaptive height
@@ -44,12 +45,13 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Project carousel with default display on Caesar Cipher */}
-        <ProjectCarousel defaultIndex={1}>
+        {/* Project carousel with default display on Clockwise */}
+        <ProjectCarousel defaultIndex={2}>
           {/* Project 1: Personal Website - Left */}
           <ProjectCard
             title="Personal Website"
             description="The source code for this portfolio website built with Next.js, TypeScript, and Tailwind CSS."
+            projectUrl="/projects/personal-website"
             githubUrl="https://github.com/yanntroadec/personal-website"
           >
             <GitHubRepoPreview repoUrl="https://github.com/yanntroadec/personal-website" />
@@ -59,15 +61,27 @@ export default function Projects() {
           <ProjectCard
             title="Caesar Cipher Decryptor"
             description="An automatic Caesar cipher decoder supporting four languages with frequency analysis."
+            projectUrl="/projects/caesar-cipher"
             githubUrl="https://github.com/yanntroadec/caesar-cipher-toolkit"
           >
             <CaesarToolkit />
           </ProjectCard>
 
-          {/* Project 3: Cisco Packet Tracer Labs - Right */}
+          {/* Project 3: Clockwise Game */}
+          <ProjectCard
+            title="Clockwise"
+            description="A browser-based timing and strategy game where you align rotating color wheels to beat the clock."
+            projectUrl="/projects/clockwise"
+            githubUrl="https://github.com/yanntroadec/personal-website"
+          >
+            <ClockwiseGame />
+          </ProjectCard>
+
+          {/* Project 4: Cisco Packet Tracer Labs */}
           <ProjectCard
             title="Cisco Packet Tracer Network Labs"
             description="Enterprise network lab series featuring comprehensive Packet Tracer configurations for learning and practicing networking concepts."
+            projectUrl="/projects/packet-tracer-labs"
             githubUrl="https://github.com/yanntroadec/cisco-packettracer-networklabs-series-01-enterprise"
           >
             <GitHubRepoPreview repoUrl="https://github.com/yanntroadec/cisco-packettracer-networklabs-series-01-enterprise" />

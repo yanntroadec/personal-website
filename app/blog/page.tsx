@@ -5,10 +5,11 @@ import Footer from "../../components/Footer"
 import ArticleCard from "../../components/ArticleCard"
 import BlogCarousel from "../../components/BlogCarousel"
 import FloatingParticles from "../../components/FloatingParticles"
+import { useEffect } from 'react'
 
 /**
  * Blog Page Component
- * 
+ *
  * Blog listing page featuring:
  * - Article cards with preview and metadata
  * - Networking, security, and backend development topics
@@ -16,6 +17,14 @@ import FloatingParticles from "../../components/FloatingParticles"
  * - Consistent dark theme with cyan accents
  */
 export default function Blog() {
+  // Update page metadata dynamically for client component
+  useEffect(() => {
+    document.title = 'Blog | Yann Troadec'
+    const metaDescription = document.querySelector('meta[name="description"]')
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Technical articles about networking, systems programming, and backend development. Learn about Cisco networking, VLAN configuration, TCP/IP protocols, and modern web technologies.')
+    }
+  }, [])
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col animate-fade-in-slow relative overflow-hidden">
       {/* Subtle grain texture overlay */}

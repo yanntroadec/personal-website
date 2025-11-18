@@ -4,14 +4,23 @@ import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import AboutCard from "../../components/AboutCard"
 import FloatingParticles from "../../components/FloatingParticles"
+import { useEffect } from 'react'
 
 /**
  * About Page Component
- * 
+ *
  * Professional profile page featuring personal information,
  * contact details, certifications, and social links.
  */
 export default function About() {
+  // Update page metadata dynamically for client component
+  useEffect(() => {
+    document.title = 'About | Yann Troadec'
+    const metaDescription = document.querySelector('meta[name="description"]')
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Learn more about Yann Troadec, software developer from Rennes, France. Specializing in systems programming, networking, and backend development with expertise in JavaScript, TypeScript, and Cisco networking.')
+    }
+  }, [])
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col animate-fade-in-slow relative overflow-hidden">
       {/* Subtle grain texture overlay */}

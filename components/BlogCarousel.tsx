@@ -25,11 +25,11 @@ export default function BlogCarousel({
   // Add active state to child articles without blocking navigation
   const articlesWithActiveState = articlesArray.map((article, index) => {
     if (React.isValidElement(article)) {
-      const props: any = {
+      const props: { isActive: boolean } = {
         isActive: index === currentIndex
       }
 
-      return React.cloneElement(article as React.ReactElement<any>, props)
+      return React.cloneElement(article as React.ReactElement<{ isActive?: boolean }>, props)
     }
     return article
   })

@@ -1,8 +1,7 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import React from 'react'
-import { useRouter } from 'next/navigation'
 
 /**
  * ProjectCarousel Component
@@ -17,18 +16,9 @@ export default function ProjectCarousel({
   children: React.ReactNode[]
   defaultIndex?: number
 }) {
-  const router = useRouter()
   const [currentIndex, setCurrentIndex] = useState(defaultIndex)
   const [focusMode, setFocusMode] = useState(false)
   const projectsArray = Array.isArray(children) ? children : [children]
-
-  // Project URLs mapping
-  const projectUrls = [
-    '/projects/personal-website',
-    '/projects/caesar-cipher',
-    '/projects/clockwise',
-    '/projects/packet-tracer-labs'
-  ]
 
   // Handle card click
   const handleCardClick = (index: number) => {
@@ -44,7 +34,7 @@ export default function ProjectCarousel({
   // Add active state and click handler to child projects
   const projectsWithActiveState = projectsArray.map((project, index) => {
     if (React.isValidElement(project)) {
-      return React.cloneElement(project as React.ReactElement<any>, {
+      return React.cloneElement(project as React.ReactElement<{ isActive?: boolean; onClick?: () => void }>, {
         isActive: index === currentIndex,
         onClick: () => handleCardClick(index)
       })

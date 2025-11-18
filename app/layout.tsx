@@ -9,35 +9,56 @@ import { Analytics } from '@vercel/analytics/react';
  * for the entire application.
  */
 export const metadata: Metadata = {
-  title: 'Yann Troadec - Systems, layer by layer',
-  description: 'Developer passionate about systems, networking, and building solutions.',
+  title: {
+    default: 'Yann Troadec - Systems, layer by layer',
+    template: '%s | Yann Troadec'
+  },
+  description: 'Software developer specializing in systems programming, networking, and backend development. Explore my projects in JavaScript, network engineering, and interactive web applications.',
   authors: [{ name: 'Yann Troadec' }],
-  keywords: ['Yann Troadec', 'developer', 'backend', 'Rust', 'Javascript', 'networking', 'IT', 'Rennes'],
-  
+  keywords: [
+    'Yann Troadec',
+    'software developer',
+    'systems programming',
+    'backend developer',
+    'JavaScript developer',
+    'network engineer',
+    'networking',
+    'Cisco',
+    'VLAN configuration',
+    'TCP/IP',
+    'full-stack developer',
+    'web development',
+    'Next.js',
+    'TypeScript',
+    'Rennes',
+    'France'
+  ],
+
   // Open Graph metadata for social media sharing
   openGraph: {
     title: 'Yann Troadec - Systems, layer by layer',
-    description: 'Developer passionate about systems, networking, and building solutions.',
+    description: 'Software developer specializing in systems programming, networking, and backend development. Portfolio featuring JavaScript, network engineering projects, and interactive web applications.',
     type: 'website',
     url: 'https://yanntroadec.com',
-    siteName: 'Yann Troadec',
+    siteName: 'Yann Troadec Portfolio',
     locale: 'en_US',
     images: [
       {
-        url: '/favicon.svg',
-        width: 512,
-        height: 512,
-        alt: 'Yann Troadec Logo',
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Yann Troadec - Systems, layer by layer',
       },
     ],
   },
-  
+
   // Twitter card metadata
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Yann Troadec - Systems, layer by layer',
-    description: 'Systems | Networking | Development',
+    description: 'Software developer specializing in systems programming, networking, and backend development.',
     creator: '@yanntroadec',
+    images: ['/og-image.png'],
   },
   
   // Search engine directives
@@ -96,8 +117,45 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Yann Troadec',
+    url: 'https://yanntroadec.com',
+    jobTitle: 'Software Developer',
+    description: 'Software developer specializing in systems programming, networking, and backend development',
+    knowsAbout: [
+      'JavaScript',
+      'TypeScript',
+      'Next.js',
+      'Network Engineering',
+      'Systems Programming',
+      'Backend Development',
+      'Web Development',
+      'Cisco Networking',
+      'VLAN Configuration',
+      'TCP/IP'
+    ],
+    sameAs: [
+      'https://github.com/yanntroadec',
+      'https://twitter.com/yanntroadec'
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Rennes',
+      addressCountry: 'France'
+    }
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         {children}
         <Analytics />

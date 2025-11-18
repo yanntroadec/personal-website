@@ -5,6 +5,7 @@ import Footer from "../../components/Footer"
 import ProjectCard from "../../components/ProjectCard"
 import ProjectCarousel from "../../components/ProjectCarousel"
 import FloatingParticles from "../../components/FloatingParticles"
+import { useEffect } from 'react'
 
 /**
  * Projects Page Component
@@ -13,11 +14,20 @@ import FloatingParticles from "../../components/FloatingParticles"
  * - Horizontal carousel navigation with arrow controls
  * - Four projects: Personal Website, Caesar Cipher, Clockwise Game, Packet Tracer Labs
  * - GitHub repository integration with expandable file tree
- * - Caesar Cipher decoder as default displayed project
+ * - Network Labs as default displayed project
  * - Uniform card sizing with adaptive height
  * - Floating particle animation background
  */
 export default function Projects() {
+  // Update page metadata dynamically for client component
+  useEffect(() => {
+    document.title = 'Projects | Yann Troadec'
+    const metaDescription = document.querySelector('meta[name="description"]')
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Explore my portfolio of software projects including network labs, cryptography tools, interactive games, and web applications built with Next.js, TypeScript, and modern web technologies.')
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col animate-fade-in-slow relative overflow-hidden">
       {/* Subtle grain texture overlay */}

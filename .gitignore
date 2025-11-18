@@ -57,3 +57,5 @@ Thumbs.db
 # Temporary files
 tmp/
 temp/
+# OG image code memo (do not push to GitHub)
+og-image-code.jsx

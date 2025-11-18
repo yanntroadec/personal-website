@@ -17,26 +17,13 @@ export default function ProjectCarousel({
   defaultIndex?: number
 }) {
   const [currentIndex, setCurrentIndex] = useState(defaultIndex)
-  const [focusMode, setFocusMode] = useState(false)
   const projectsArray = Array.isArray(children) ? children : [children]
 
-  // Handle card click
-  const handleCardClick = (index: number) => {
-    if (index === currentIndex) {
-      // If clicking active card, enter focus mode (hide other cards)
-      setFocusMode(true)
-    } else {
-      // If clicking inactive card, make it active
-      setCurrentIndex(index)
-    }
-  }
-
-  // Add active state and click handler to child projects
+  // Add active state to child projects
   const projectsWithActiveState = projectsArray.map((project, index) => {
     if (React.isValidElement(project)) {
-      return React.cloneElement(project as React.ReactElement<{ isActive?: boolean; onClick?: () => void }>, {
-        isActive: index === currentIndex,
-        onClick: () => handleCardClick(index)
+      return React.cloneElement(project as React.ReactElement<{ isActive?: boolean }>, {
+        isActive: index === currentIndex
       })
     }
     return project
@@ -50,13 +37,11 @@ export default function ProjectCarousel({
   // Navigate to previous project
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? projectsArray.length - 1 : prev - 1))
-    setFocusMode(false) // Exit focus mode when navigating
   }
 
   // Navigate to next project
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === projectsArray.length - 1 ? 0 : prev + 1))
-    setFocusMode(false) // Exit focus mode when navigating
   }
 
   // Handle touch start
@@ -107,47 +92,13 @@ export default function ProjectCarousel({
           </svg>
         </button>
 
-        {/* Project Display with 3D carousel effect */}
-        <div className="flex-1 overflow-visible relative" style={{ perspective: '2000px' }}>
-          <div className="flex items-center justify-center gap-8 relative">
-            {/* Previous project preview (rotated left, 3D depth) - Clickable, hidden in focus mode */}
-            {projectsArray.length > 1 && !focusMode && (
-              <div
-                onClick={() => handleCardClick(currentIndex === 0 ? projectsArray.length - 1 : currentIndex - 1)}
-                className="hidden lg:block flex-shrink-0 opacity-35 cursor-pointer hover:opacity-50 transition-all duration-500"
-                style={{
-                  transform: 'rotateY(45deg) scale(0.85) translateZ(-200px) translateX(-50px)',
-                  transformStyle: 'preserve-3d'
-                }}
-              >
-                {projectsArray[currentIndex === 0 ? projectsArray.length - 1 : currentIndex - 1]}
-              </div>
-            )}
-
-            {/* Current project (centered, no rotation) */}
-            <div
-              className="flex-shrink-0 transition-all duration-500 relative z-10"
-              style={{
-                transform: 'rotateY(0deg) scale(1) translateZ(0px)',
-                transformStyle: 'preserve-3d'
-              }}
-            >
+        {/* Project Display - Simple centered layout */}
+        <div className="flex-1 overflow-visible relative">
+          <div className="flex items-center justify-center relative">
+            {/* Current project (centered) */}
+            <div className="flex-shrink-0 transition-all duration-500 relative z-10">
               {projectsWithActiveState[currentIndex]}
             </div>
-
-            {/* Next project preview (rotated right, 3D depth) - Clickable, hidden in focus mode */}
-            {projectsArray.length > 1 && !focusMode && (
-              <div
-                onClick={() => handleCardClick(currentIndex === projectsArray.length - 1 ? 0 : currentIndex + 1)}
-                className="hidden lg:block flex-shrink-0 opacity-35 cursor-pointer hover:opacity-50 transition-all duration-500"
-                style={{
-                  transform: 'rotateY(-45deg) scale(0.85) translateZ(-200px) translateX(50px)',
-                  transformStyle: 'preserve-3d'
-                }}
-              >
-                {projectsArray[currentIndex === projectsArray.length - 1 ? 0 : currentIndex + 1]}
-              </div>
-            )}
           </div>
         </div>
 

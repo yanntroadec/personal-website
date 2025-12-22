@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import Link from "next/link"
-import Header from "../components/Header"
-import FloatingParticles from "../components/FloatingParticles"
-import Footer from "../components/Footer"
+import Link from "next/link";
+import Header from "../components/Header";
+import FloatingParticles from "../components/FloatingParticles";
+import Footer from "../components/Footer";
 
 /**
  * Home Page Component
- * 
+ *
  * Main landing page featuring:
  * - Hero section with animated name
  * - Navigation cards to Projects, Blog, and About sections with staggered layout
@@ -19,24 +19,24 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col relative overflow-hidden">
       {/* Subtle grain texture overlay */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-20 pointer-events-none"></div>
-      
+
       {/* Animated particle system background */}
       <FloatingParticles />
-      
+
       {/* Site header with home button */}
       <Header />
-      
+
       {/* Tagline section */}
       <div className="w-full flex justify-center pt-12 md:pt-16 pb-8 md:pb-12 z-10">
         <div className="text-center">
           <span className="text-cyan-400 text-2xl md:text-4xl font-semibold font-mono">
-           Systems, layer by layer
+            Systems, layer by layer
           </span>
           {/* Decorative line */}
           <div className="w-32 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mt-4 mx-auto opacity-50"></div>
         </div>
       </div>
-      
+
       {/* Main content container with two columns */}
       <div className="flex flex-col md:flex-row flex-1 items-center w-full relative">
         {/* Vertical separator line (desktop only) */}
@@ -55,7 +55,7 @@ export default function Home() {
             <h1 className="text-left font-mono text-3xl md:text-5xl font-bold leading-relaxed tracking-tight">
               {/* Greeting text */}
               <span className="block text-slate-400 text-xl md:text-2xl mb-4 font-normal">
-                Hi, I'm 
+                Hi, I'm
               </span>
               {/* Name with neon glow effect */}
               <span
@@ -76,9 +76,10 @@ export default function Home() {
 
             {/* Introduction paragraph */}
             <p className="text-slate-400 text-base md:text-lg mt-6 font-mono leading-relaxed">
-              Technical support professional building expertise in backend development, networking, and infrastructure.
+              Technical support professional building expertise in networking,
+              cloud infrastructure, and security.
             </p>
-            
+
             {/* Decorative accent line */}
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-transparent mt-8"></div>
           </div>

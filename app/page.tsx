@@ -76,8 +76,8 @@ export default function Home() {
 
             {/* Introduction paragraph */}
             <p className="text-slate-400 text-base md:text-lg mt-6 font-mono leading-relaxed">
-              Technical support professional building expertise in networking,
-              cloud infrastructure, and security.
+              IT Technician focused on networking. Building hands-on skills
+              through Cisco labs and documentation.
             </p>
 
             {/* Decorative accent line */}

@@ -12,7 +12,7 @@ import { useEffect } from 'react'
  *
  * Interactive projects showcase featuring:
  * - Horizontal carousel navigation with arrow controls
- * - Four projects: Personal Website, Caesar Cipher, Clockwise Game, Packet Tracer Labs
+ * - Three projects: Personal Website, Caesar Cipher, Packet Tracer Labs
  * - GitHub repository integration with expandable file tree
  * - Network Labs as default displayed project
  * - Uniform card sizing with adaptive height
@@ -76,14 +76,6 @@ export default function Projects() {
             description="An automatic Caesar cipher decoder supporting four languages with frequency analysis."
             projectUrl="/projects/caesar-cipher"
             githubUrl="https://github.com/yanntroadec/caesar-cipher-toolkit"
-          />
-
-          {/* Project 4: Clockwise Game */}
-          <ProjectCard
-            title="Clockwise"
-            description="A browser-based timing and strategy game where you align rotating color wheels to beat the clock."
-            projectUrl="/projects/clockwise"
-            githubUrl="https://github.com/yanntroadec/personal-website/blob/main/components/ClockwiseGame.tsx"
           />
         </ProjectCarousel>
       </div>

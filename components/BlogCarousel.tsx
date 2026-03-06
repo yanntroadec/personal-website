@@ -189,15 +189,15 @@ export default function BlogCarousel({
       </div>
 
       {/* Progress Indicator */}
-      <div className="flex flex-col items-center gap-2 mt-8 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:mt-0">
+      <div className="flex justify-center gap-2 mt-8 md:flex-col md:items-center md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:mt-0">
         {articlesArray.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 rounded-full transition-all duration-300 ${
+            className={`h-2 rounded-full transition-all duration-300 ${
               index === currentIndex
-                ? 'h-8 bg-cyan-400'
-                : 'h-2 bg-slate-600 hover:bg-slate-500'
+                ? 'w-8 bg-cyan-400'
+                : 'w-2 bg-slate-600 hover:bg-slate-500'
             }`}
             aria-label={`Go to article ${index + 1}`}
           />

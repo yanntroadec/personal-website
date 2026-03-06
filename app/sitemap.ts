@@ -36,6 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
   ]
 
   // Project pages
@@ -60,6 +66,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
+  // Blog articles
+  const blogArticles = [
+    {
+      url: `${baseUrl}/blog/vlan-configuration`,
+      lastModified: new Date('2025-11-17'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/ios-fundamentals-advanced`,
+      lastModified: new Date('2025-11-16'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/ssh-configuration`,
+      lastModified: new Date('2025-11-01'),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    },
+  ]
+
   // Resource pages
   const resources = [
     {
@@ -70,5 +98,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  return [...routes, ...projects, ...resources]
+  return [...routes, ...projects, ...blogArticles, ...resources]
 }

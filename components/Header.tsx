@@ -19,35 +19,42 @@ export default function Header() {
   // Determine which pages to show based on current path
   const getNavigationLinks = () => {
     if (pathname === '/') {
-      // From home: show Projects, Resources, About
+      // From home: show all sections
       return [
         { href: '/projects', label: 'Projects' },
+        { href: '/blog', label: 'Blog' },
         { href: '/resources', label: 'Resources' },
         { href: '/about', label: 'About' }
       ]
     } else if (pathname.startsWith('/projects')) {
-      // From projects: show Resources, About (Home is the icon)
       return [
+        { href: '/blog', label: 'Blog' },
+        { href: '/resources', label: 'Resources' },
+        { href: '/about', label: 'About' }
+      ]
+    } else if (pathname === '/blog' || pathname.startsWith('/blog/')) {
+      return [
+        { href: '/projects', label: 'Projects' },
         { href: '/resources', label: 'Resources' },
         { href: '/about', label: 'About' }
       ]
     } else if (pathname === '/resources') {
-      // On the resources hub: show Projects, About (Home is the icon)
       return [
         { href: '/projects', label: 'Projects' },
+        { href: '/blog', label: 'Blog' },
         { href: '/about', label: 'About' }
       ]
     } else if (pathname.startsWith('/resources/')) {
-      // On a resources sub-page: show all three (Resources acts as back)
       return [
         { href: '/projects', label: 'Projects' },
+        { href: '/blog', label: 'Blog' },
         { href: '/resources', label: 'Resources' },
         { href: '/about', label: 'About' }
       ]
     } else if (pathname.startsWith('/about')) {
-      // From about: show Projects, Resources (Home is the icon)
       return [
         { href: '/projects', label: 'Projects' },
+        { href: '/blog', label: 'Blog' },
         { href: '/resources', label: 'Resources' }
       ]
     }
@@ -55,6 +62,7 @@ export default function Header() {
     // Default: show all
     return [
       { href: '/projects', label: 'Projects' },
+      { href: '/blog', label: 'Blog' },
       { href: '/resources', label: 'Resources' },
       { href: '/about', label: 'About' }
     ]

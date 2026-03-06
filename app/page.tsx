@@ -131,8 +131,33 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Resources navigation card - Right aligned */}
+            {/* Blog navigation card - Right aligned */}
             <div className="md:ml-20">
+              <Link href="/blog" className="group relative block w-full">
+                <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+                  <div className="relative flex items-center justify-between min-h-[80px]">
+                    <div className="flex-1">
+                      <h3 className="text-4xl md:text-5xl font-bold font-mono text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                        Blog
+                      </h3>
+                      <p className="text-slate-400 font-mono text-sm md:text-base">
+                        Thoughts & discoveries
+                      </p>
+                    </div>
+                    <div className="ml-4 transform group-hover:translate-x-2 transition-transform duration-300">
+                      <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-500 rounded-b-2xl"></div>
+                </div>
+              </Link>
+            </div>
+
+            {/* Resources navigation card - Left aligned */}
+            <div className="md:mr-20">
               <Link href="/resources" className="group relative block w-full">
                 <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   {/* Hover glow effect */}
@@ -174,8 +199,8 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* About navigation card - Left aligned */}
-            <div className="md:mr-20">
+            {/* About navigation card - Right aligned */}
+            <div className="md:ml-20">
               <Link href="/about" className="group relative block w-full">
                 <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   {/* Hover glow effect */}

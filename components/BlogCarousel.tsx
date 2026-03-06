@@ -97,59 +97,83 @@ export default function BlogCarousel({
   return (
     <div className="relative w-full max-w-4xl">
       {/* Navigation Buttons - Hidden on mobile */}
-      <div className="hidden md:flex flex-col items-center gap-6">
-        {/* Previous Button (Up Arrow) */}
-        <button
-          onClick={handlePrevious}
-          className="group relative p-4 bg-slate-800/70 backdrop-blur-sm border-2 border-cyan-400/30 rounded-xl hover:border-cyan-400 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/40 hover:bg-slate-800/90 disabled:opacity-30 disabled:cursor-not-allowed hover:-translate-y-1"
-          disabled={articlesArray.length <= 1}
-          aria-label="Previous article"
-        >
-          <svg
-            className="w-7 h-7 text-white group-hover:text-cyan-400 transition-colors duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            strokeWidth={2.5}
+      <div className="hidden md:flex items-center gap-6">
+        {/* Articles + vertical nav column */}
+        <div className="flex flex-col items-center gap-6 flex-1">
+          {/* Previous Button (Up Arrow) */}
+          <button
+            onClick={handlePrevious}
+            className="group relative p-4 bg-slate-800/70 backdrop-blur-sm border-2 border-cyan-400/30 rounded-xl hover:border-cyan-400 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/40 hover:bg-slate-800/90 disabled:opacity-30 disabled:cursor-not-allowed hover:-translate-y-1"
+            disabled={articlesArray.length <= 1}
+            aria-label="Previous article"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-          </svg>
-        </button>
+            <svg
+              className="w-7 h-7 text-white group-hover:text-cyan-400 transition-colors duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+            </svg>
+          </button>
 
-        {/* Article Display with previews */}
-        <div className="w-full relative">
-          <div className="flex flex-col items-center gap-4">
-            {/* Current article (full opacity) */}
-            <div className="w-full transition-all duration-500">
-              {articlesWithActiveState[currentIndex]}
-            </div>
-
-            {/* Next article preview (semi-transparent) - only show below, hidden in focus mode */}
-            {articlesArray.length > 1 && !focusMode && (
-              <div className="hidden lg:block w-full opacity-35 hover:opacity-50 transition-all duration-500">
-                {articlesWithActiveState[currentIndex === articlesArray.length - 1 ? 0 : currentIndex + 1]}
+          {/* Article Display with previews */}
+          <div className="w-full relative">
+            <div className="flex flex-col items-center gap-4">
+              {/* Current article (full opacity) */}
+              <div className="w-full transition-all duration-500">
+                {articlesWithActiveState[currentIndex]}
               </div>
-            )}
+
+              {/* Next article preview (semi-transparent) - only show below, hidden in focus mode */}
+              {articlesArray.length > 1 && !focusMode && (
+                <div className="hidden lg:block w-full opacity-35 hover:opacity-50 transition-all duration-500">
+                  {articlesWithActiveState[currentIndex === articlesArray.length - 1 ? 0 : currentIndex + 1]}
+                </div>
+              )}
+            </div>
           </div>
+
+          {/* Next Button (Down Arrow) */}
+          <button
+            onClick={handleNext}
+            className="group relative p-4 bg-slate-800/70 backdrop-blur-sm border-2 border-cyan-400/30 rounded-xl hover:border-cyan-400 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/40 hover:bg-slate-800/90 disabled:opacity-30 disabled:cursor-not-allowed hover:translate-y-1"
+            disabled={articlesArray.length <= 1}
+            aria-label="Next article"
+          >
+            <svg
+              className="w-7 h-7 text-white group-hover:text-cyan-400 transition-colors duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          {/* Article Counter - desktop, aligned under the down arrow */}
+          <span className="text-white font-mono text-sm font-semibold">
+            {currentIndex + 1} / {articlesArray.length}
+          </span>
         </div>
 
-        {/* Next Button (Down Arrow) */}
-        <button
-          onClick={handleNext}
-          className="group relative p-4 bg-slate-800/70 backdrop-blur-sm border-2 border-cyan-400/30 rounded-xl hover:border-cyan-400 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-400/40 hover:bg-slate-800/90 disabled:opacity-30 disabled:cursor-not-allowed hover:translate-y-1"
-          disabled={articlesArray.length <= 1}
-          aria-label="Next article"
-        >
-          <svg
-            className="w-7 h-7 text-white group-hover:text-cyan-400 transition-colors duration-300 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            strokeWidth={2.5}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
+        {/* Progress indicator - vertical column to the right of articles */}
+        <div className="flex flex-col items-center gap-2">
+          {articlesArray.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-2 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? 'h-8 bg-cyan-400'
+                  : 'h-2 bg-slate-600 hover:bg-slate-500'
+              }`}
+              aria-label={`Go to article ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Mobile: Swipeable carousel with progressive scroll */}
@@ -188,8 +212,8 @@ export default function BlogCarousel({
         </div>
       </div>
 
-      {/* Progress Indicator */}
-      <div className="flex justify-center gap-2 mt-8 md:flex-col md:items-center md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:mt-0">
+      {/* Progress Indicator - mobile only */}
+      <div className="flex md:hidden justify-center gap-2 mt-8">
         {articlesArray.map((_, index) => (
           <button
             key={index}
@@ -204,8 +228,8 @@ export default function BlogCarousel({
         ))}
       </div>
 
-      {/* Article Counter */}
-      <div className="text-center mt-4">
+      {/* Article Counter - mobile only */}
+      <div className="text-center mt-4 md:hidden">
         <span className="text-white font-mono text-sm font-semibold">
           {currentIndex + 1} / {articlesArray.length}
         </span>

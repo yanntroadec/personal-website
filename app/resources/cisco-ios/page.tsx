@@ -19,7 +19,7 @@ export default function CiscoIOSPage() {
       <FloatingParticles />
       <Header />
 
-      <div className="flex-1 flex flex-col px-6 py-12 relative z-10">
+      <div className="flex-1 flex flex-col px-2 sm:px-6 py-6 sm:py-12 relative z-10">
         {/* Title */}
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-4">

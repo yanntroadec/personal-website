@@ -970,10 +970,10 @@ export default function CiscoIOSReference() {
   const currentMode = D.modes.find(m => m.id === mode)
   const cmdCount = (m: Mode) => m.groups.reduce((a, g) => a + g.cmds.filter(c => c[1]).length, 0)
 
-  // ── Sidebar ──────────────────────────────────────────────────────────────
+  // ── Sidebar (desktop only) ────────────────────────────────────────────────
 
   const Sidebar = () => (
-    <div className="w-52 flex-shrink-0 bg-slate-800/60 border-r border-slate-700 overflow-y-auto">
+    <div className="hidden md:flex md:flex-col w-52 flex-shrink-0 bg-slate-800/60 border-r border-slate-700 overflow-y-auto">
       <div className="px-3 py-2 text-xs text-slate-500 uppercase tracking-widest font-mono mt-2">Modes</div>
 
       {/* Overview */}
@@ -1017,19 +1017,36 @@ export default function CiscoIOSReference() {
     </div>
   )
 
+  // ── Mobile mode picker ────────────────────────────────────────────────────
+
+  const MobileModePicker = () => (
+    <div className="md:hidden px-3 py-2 bg-slate-800/60 border-b border-slate-700 flex-shrink-0">
+      <select
+        value={mode}
+        onChange={e => { setMode(e.target.value); setSearch('') }}
+        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs font-mono text-slate-300 outline-none"
+      >
+        <option value="overview">Overview</option>
+        {D.modes.map(m => (
+          <option key={m.id} value={m.id}>{m.name} — {m.prompt}</option>
+        ))}
+      </select>
+    </div>
+  )
+
   // ── Overview ─────────────────────────────────────────────────────────────
 
   const Overview = () => (
-    <div className="p-6 animate-fade-in-slow">
-      <h2 className="text-2xl font-bold font-mono text-white mb-1">
+    <div className="p-4 md:p-6 animate-fade-in-slow">
+      <h2 className="text-xl md:text-2xl font-bold font-mono text-white mb-1">
         {dev === 'router' ? '⬡' : '⬢'} Cisco {D.label} — IOS Mode Map
       </h2>
-      <p className="text-slate-500 text-xs font-mono mb-8">
+      <p className="text-slate-500 text-xs font-mono mb-6 md:mb-8">
         Click any mode to explore its commands. Use the search bar to find commands across all modes.
       </p>
 
       {/* Flow diagram */}
-      <div className="mb-8">
+      <div className="mb-6 md:mb-8">
         <div className="text-xs uppercase tracking-widest text-slate-600 font-mono mb-4">Mode Hierarchy</div>
         <div className="flex flex-wrap items-start gap-0">
           {D.flow.map((fn, i) => {
@@ -1104,7 +1121,7 @@ export default function CiscoIOSReference() {
   // ── Search results ────────────────────────────────────────────────────────
 
   const SearchResults = () => (
-    <div className="p-6 animate-fade-in-slow">
+    <div className="p-4 md:p-6 animate-fade-in-slow">
       <div className="mb-5">
         <div className="text-xl font-bold font-mono text-white mb-1">Search results</div>
         <div className="text-xs text-slate-500 font-mono">
@@ -1120,13 +1137,13 @@ export default function CiscoIOSReference() {
           {searchResults.map((r, i) => (
             <div
               key={i}
-              className="grid grid-cols-[minmax(200px,280px)_1fr] border-b border-slate-800 last:border-b-0 hover:bg-slate-800/40 transition-colors"
+              className="grid grid-cols-1 md:grid-cols-[minmax(200px,280px)_1fr] border-b border-slate-800 last:border-b-0 hover:bg-slate-800/40 transition-colors"
             >
-              <div className="px-4 py-2.5 border-r border-slate-800 font-mono text-xs text-amber-300 break-words">
+              <div className="px-4 py-2.5 md:border-r border-slate-800 font-mono text-xs text-amber-300 break-words">
                 <FormatCmd cmd={r.cmd} query={search} />
                 <div className="text-[10px] mt-0.5 font-mono" style={{ color: r.modeCol }}>{r.modeName}</div>
               </div>
-              <div className="px-4 py-2.5 text-xs text-slate-400 flex items-center">
+              <div className="px-4 pb-2.5 pt-0 md:pt-2.5 text-xs text-slate-400 flex items-start md:items-center">
                 {highlight(r.desc, search)}
               </div>
             </div>
@@ -1141,7 +1158,7 @@ export default function CiscoIOSReference() {
   const ModeDetail = ({ m }: { m: Mode }) => {
     const enterLines = m.enter.split('\n')
     return (
-      <div className="p-6 animate-fade-in-slow">
+      <div className="p-4 md:p-6 animate-fade-in-slow">
         {/* Header */}
         <div className="flex gap-3 pb-5 border-b border-slate-700 mb-5">
           <div className="w-0.5 rounded-full flex-shrink-0 self-stretch min-h-[44px]" style={{ background: m.col }} />
@@ -1158,10 +1175,10 @@ export default function CiscoIOSReference() {
         </div>
 
         {/* How to enter */}
-        <div className="bg-slate-800/70 border border-slate-700 rounded-lg px-4 py-3 mb-5">
+        <div className="bg-slate-800/70 border border-slate-700 rounded-lg px-4 py-3 mb-5 overflow-x-auto">
           <div className="text-[10px] uppercase tracking-widest text-slate-600 font-mono mb-2">How to enter</div>
           {enterLines.map((line, i) => (
-            <div key={i} className="font-mono text-xs text-amber-300">
+            <div key={i} className="font-mono text-xs text-amber-300 whitespace-nowrap">
               <FormatCmd cmd={line} query="" />
             </div>
           ))}
@@ -1186,12 +1203,12 @@ export default function CiscoIOSReference() {
                 {cmds.map(([cmd, desc], i) => (
                   <div
                     key={i}
-                    className="grid grid-cols-[minmax(200px,300px)_1fr] border-b border-slate-800 last:border-b-0 hover:bg-slate-800/40 transition-colors"
+                    className="grid grid-cols-1 md:grid-cols-[minmax(200px,300px)_1fr] border-b border-slate-800 last:border-b-0 hover:bg-slate-800/40 transition-colors"
                   >
-                    <div className="px-4 py-2.5 border-r border-slate-800 font-mono text-xs text-amber-300 break-words">
+                    <div className="px-4 py-2.5 md:border-r border-slate-800 font-mono text-xs text-amber-300 break-words">
                       <FormatCmd cmd={cmd} query="" />
                     </div>
-                    <div className="px-4 py-2.5 text-xs text-slate-400 leading-relaxed flex items-center">
+                    <div className="px-4 pb-2.5 pt-0 md:pt-2.5 text-xs text-slate-400 leading-relaxed flex items-start md:items-center">
                       {desc}
                     </div>
                   </div>
@@ -1251,6 +1268,9 @@ export default function CiscoIOSReference() {
           )}
         </div>
       </div>
+
+      {/* Mobile mode picker */}
+      {!search && <MobileModePicker />}
 
       {/* Body: sidebar + content */}
       <div className="flex flex-1 overflow-hidden">

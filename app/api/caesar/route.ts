@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         }
         break
 
-      case 'rot13':
+      case 'rot13': {
         // Apply ROT13 cipher (fixed shift of 13)
         const rot13Result = rot13(text)
         result = {
@@ -67,8 +67,9 @@ export async function POST(request: NextRequest) {
           shift: 13
         }
         break
+      }
 
-      case 'brute':
+      case 'brute': {
         // Try all possible shifts (1-25) and return all results
         const allResults = bruteForce(text)
         result = {
@@ -76,8 +77,9 @@ export async function POST(request: NextRequest) {
           allShifts: allResults
         }
         break
+      }
 
-      case 'auto':
+      case 'auto': {
         // Automatically detect the correct shift using frequency analysis
         const autoResult = autoDecode(text, language)
         if (!autoResult.success) {
@@ -93,6 +95,7 @@ export async function POST(request: NextRequest) {
           allShifts: autoResult.allShifts
         }
         break
+      }
 
       default:
         // Invalid mode provided

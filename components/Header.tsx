@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation'
 
 /**
  * Header Component
- * 
+ *
  * Site header with expandable navigation menu that reveals on hover/click.
  * Shows only relevant pages based on current location:
- * - Home page: Shows Projects, Blog, About
+ * - Home page: Shows Projects, Resources, About
  * - Other pages: Home icon (clickable) + other two pages
  */
 export default function Header() {
@@ -19,42 +19,48 @@ export default function Header() {
   // Determine which pages to show based on current path
   const getNavigationLinks = () => {
     if (pathname === '/') {
-      // From home: show Projects, Blog, About
+      // From home: show Projects, Resources, About
       return [
         { href: '/projects', label: 'Projects' },
-        { href: '/blog', label: 'Blog' },
+        { href: '/resources', label: 'Resources' },
         { href: '/about', label: 'About' }
       ]
     } else if (pathname.startsWith('/projects')) {
-      // From projects: show Blog, About (Home is the icon)
+      // From projects: show Resources, About (Home is the icon)
       return [
-        { href: '/blog', label: 'Blog' },
+        { href: '/resources', label: 'Resources' },
         { href: '/about', label: 'About' }
       ]
-    } else if (pathname.startsWith('/blog')) {
-      // From blog: show Projects, About (Home is the icon)
+    } else if (pathname === '/resources') {
+      // On the resources hub: show Projects, About (Home is the icon)
       return [
         { href: '/projects', label: 'Projects' },
+        { href: '/about', label: 'About' }
+      ]
+    } else if (pathname.startsWith('/resources/')) {
+      // On a resources sub-page: show all three (Resources acts as back)
+      return [
+        { href: '/projects', label: 'Projects' },
+        { href: '/resources', label: 'Resources' },
         { href: '/about', label: 'About' }
       ]
     } else if (pathname.startsWith('/about')) {
-      // From about: show Projects, Blog (Home is the icon)
+      // From about: show Projects, Resources (Home is the icon)
       return [
         { href: '/projects', label: 'Projects' },
-        { href: '/blog', label: 'Blog' }
+        { href: '/resources', label: 'Resources' }
       ]
     }
-    
+
     // Default: show all
     return [
       { href: '/projects', label: 'Projects' },
-      { href: '/blog', label: 'Blog' },
+      { href: '/resources', label: 'Resources' },
       { href: '/about', label: 'About' }
     ]
   }
 
   const navigationLinks = getNavigationLinks()
-  const isHomePage = pathname === '/'
 
   return (
     <div className="w-full flex justify-center pt-8 z-50 relative">

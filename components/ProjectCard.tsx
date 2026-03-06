@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 /**
  * ProjectCard Component
  *
@@ -48,7 +50,7 @@ export default function ProjectCard({
         <div className="flex items-center gap-3 md:gap-4 pt-4">
           {/* View Project button */}
           {projectUrl && (
-            <a
+            <Link
               href={projectUrl}
               className="px-4 py-3 md:px-6 md:py-3 bg-cyan-400 hover:bg-cyan-300 text-slate-900 font-bold font-mono rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/50 flex items-center gap-2"
               aria-label="View project page"
@@ -68,7 +70,7 @@ export default function ProjectCard({
                 <line x1="10" y1="14" x2="21" y2="3"></line>
               </svg>
               <span className="hidden md:inline">View Project</span>
-            </a>
+            </Link>
           )}
 
           {/* GitHub button */}

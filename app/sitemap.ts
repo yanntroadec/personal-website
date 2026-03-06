@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/resources`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
@@ -60,27 +60,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Blog articles
-  const blogArticles = [
+  // Resource pages
+  const resources = [
     {
-      url: `${baseUrl}/blog/vlan-configuration`,
-      lastModified: new Date('2025-11-17'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/ios-fundamentals-advanced`,
-      lastModified: new Date('2025-11-16'),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/ssh-configuration`,
-      lastModified: new Date('2025-11-01'),
+      url: `${baseUrl}/resources/cisco-ios`,
+      lastModified: currentDate,
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
   ]
 
-  return [...routes, ...projects, ...blogArticles]
+  return [...routes, ...projects, ...resources]
 }

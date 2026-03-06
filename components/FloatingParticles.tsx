@@ -25,11 +25,14 @@ export default function FloatingParticles() {
     /**
      * Adjusts canvas size to match window dimensions
      */
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
     const resizeCanvas = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
+      initParticles()
     }
-    resizeCanvas()
     window.addEventListener('resize', resizeCanvas)
 
     /**

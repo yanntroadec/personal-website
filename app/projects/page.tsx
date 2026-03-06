@@ -24,7 +24,7 @@ export default function Projects() {
     document.title = 'Projects | Yann Troadec'
     const metaDescription = document.querySelector('meta[name="description"]')
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Explore my portfolio of software projects including network labs, cryptography tools, interactive games, and web applications built with Next.js, TypeScript, and modern web technologies.')
+      metaDescription.setAttribute('content', 'Explore my portfolio of software projects including network labs, cryptography tools, and web applications built with Next.js, TypeScript, and modern web technologies.')
     }
   }, [])
 

@@ -95,7 +95,7 @@ export default function Home() {
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 
-                  <div className="relative flex items-center justify-between">
+                  <div className="relative flex items-center justify-between min-h-[80px]">
                     <div className="flex-1">
                       {/* Card title */}
                       <h3 className="text-4xl md:text-5xl font-bold font-mono text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
@@ -131,22 +131,22 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Blog navigation card - Right aligned */}
+            {/* Resources navigation card - Right aligned */}
             <div className="md:ml-20">
-              <Link href="/blog" className="group relative block w-full">
+              <Link href="/resources" className="group relative block w-full">
                 <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-8 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 
-                  <div className="relative flex items-center justify-between">
+                  <div className="relative flex items-center justify-between min-h-[80px]">
                     <div className="flex-1">
                       {/* Card title */}
                       <h3 className="text-4xl md:text-5xl font-bold font-mono text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
-                        Blog
+                        Resources
                       </h3>
                       {/* Card description */}
                       <p className="text-slate-400 font-mono text-sm md:text-base">
-                        Thoughts & discoveries
+                        References & tools
                       </p>
                     </div>
 
@@ -181,7 +181,7 @@ export default function Home() {
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 
-                  <div className="relative flex items-center justify-between">
+                  <div className="relative flex items-center justify-between min-h-[80px]">
                     <div className="flex-1">
                       {/* Card title */}
                       <h3 className="text-4xl md:text-5xl font-bold font-mono text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">

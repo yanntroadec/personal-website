@@ -59,3 +59,6 @@ tmp/
 temp/
 # OG image code memo (do not push to GitHub)
 og-image-code.jsx
+
+# Local templates (article templates, not for production)
+_templates/

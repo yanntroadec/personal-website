@@ -23,37 +23,6 @@ export function encode(text: string, shift: number): string {
     .join('');
 }
 
-// Encode text with Caesar cipher and return detailed result
-export function encodeText(text: string, shift: number) {
-  // Validate input
-  if (!text || typeof text !== 'string') {
-    throw new TypeError('Text must be a non-empty string');
-  }
-
-  if (typeof shift !== 'number' || shift < 1 || shift > 25) {
-    throw new RangeError('Shift must be a number between 1 and 25');
-  }
-
-  // Encode the text
-  const encodedText = encode(text, shift);
-
-  // Calculate statistics
-  const letterCount = (text.match(/[a-zA-Z]/g) || []).length;
-  const wordCount = (text.match(/[a-zA-Z]+/g) || []).length;
-
-  return {
-    original: text,
-    encoded: encodedText,
-    shift: shift,
-    stats: {
-      letterCount,
-      wordCount,
-      preservedChars: text.length - letterCount,
-    },
-    timestamp: new Date().toISOString(),
-  };
-}
-
 // Decode text using Caesar cipher with given shift
 // Decoding is just encoding with negative shift
 export function decode(text: string, shift: number): string {

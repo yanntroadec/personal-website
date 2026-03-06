@@ -61,36 +61,22 @@ export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
   const [fileTree, setFileTree] = useState<FileNode | null>(null)
   const [showTree, setShowTree] = useState(false)
   const [treeLoading, setTreeLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     async function fetchRepo() {
       try {
-        // Extract owner and repo name from GitHub URL
-        const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/)
-        if (!match) {
-          throw new Error('Invalid GitHub URL')
-        }
-
-        const [, owner, repoName] = match
-        const apiUrl = `https://api.github.com/repos/${owner}/${repoName}`
-
-        // Add GitHub token if available
-        const headers: HeadersInit = {}
-        const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN
-        if (token) {
-          headers['Authorization'] = `Bearer ${token}`
-        }
-
-        const response = await fetch(apiUrl, { headers })
-        if (!response.ok) {
-          throw new Error('Failed to fetch repository')
-        }
-
+        const response = await fetch(
+          `/api/github?repoUrl=${encodeURIComponent(repoUrl)}`
+        )
+        if (!response.ok) throw new Error('Failed to fetch repository')
         const data = await response.json()
         setRepo(data)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred')
+      } finally {
+        setLoading(false)
       }
     }
 
@@ -103,25 +89,15 @@ export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
 
     setTreeLoading(true)
     try {
-      const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/)
-      if (!match) return
-
-      const [, owner, repoName] = match
-      const treeUrl = `https://api.github.com/repos/${owner}/${repoName}/git/trees/${repo.default_branch}?recursive=1`
-
-      // Add GitHub token if available
-      const headers: HeadersInit = {}
-      const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`
-      }
-
-      const response = await fetch(treeUrl, { headers })
+      const response = await fetch(
+        `/api/github?repoUrl=${encodeURIComponent(repoUrl)}&tree=1`
+      )
       if (!response.ok) throw new Error('Failed to fetch file tree')
 
       const data = await response.json()
       
       // Build tree structure from flat list
+      const repoName = repoUrl.split('/').pop() ?? 'repo'
       const rootNode: FileNode = {
         name: repoName,
         path: '',
@@ -176,6 +152,17 @@ export default function GitHubRepoPreview({ repoUrl }: { repoUrl: string }) {
       fetchFileTree()
     }
     setShowTree(!showTree)
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-8">
+        <div className="flex flex-col items-center gap-3">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-400"></div>
+          <span className="text-slate-400 font-mono text-xs">Loading repository...</span>
+        </div>
+      </div>
+    )
   }
 
   if (error || !repo) {

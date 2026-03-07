@@ -111,14 +111,15 @@ export default function Resources() {
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border border-slate-700 bg-slate-800/50">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    <rect x="2" y="6" width="20" height="12" rx="2" />
+                    <path d="M6 12h4" />
+                    <path d="M14 10l2 2-2 2" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-600 mb-1">Security</div>
-                  <div className="text-base font-bold font-mono text-slate-600 mb-2">Coming soon</div>
-                  <div className="text-sm text-slate-700">Security concepts, tools, and references.</div>
+                  <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-600 mb-1">Networking</div>
+                  <div className="text-base font-bold font-mono text-slate-600 mb-2">Cisco Devices</div>
+                  <div className="text-sm text-slate-700">Coming soon</div>
                 </div>
               </div>
             </div>
@@ -127,14 +128,15 @@ export default function Resources() {
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border border-slate-700 bg-slate-800/50">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="16 18 22 12 16 6" />
-                    <polyline points="8 6 2 12 8 18" />
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M2 12h20" />
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-600 mb-1">Programming</div>
-                  <div className="text-base font-bold font-mono text-slate-600 mb-2">Coming soon</div>
-                  <div className="text-sm text-slate-700">Code references, snippets, and cheat sheets.</div>
+                  <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-600 mb-1">Networking</div>
+                  <div className="text-base font-bold font-mono text-slate-600 mb-2">Networking Protocols</div>
+                  <div className="text-sm text-slate-700">Coming soon</div>
                 </div>
               </div>
             </div>

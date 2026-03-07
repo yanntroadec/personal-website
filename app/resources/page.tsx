@@ -97,23 +97,21 @@ export default function Resources() {
               }
             />
 
-            {/* Placeholder cards for future content */}
-            <div className="block bg-slate-800/20 border border-slate-800 border-dashed rounded-xl p-6 opacity-40 cursor-default">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border border-slate-700 bg-slate-800/50">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    <path d="M2 17l10 5 10-5" />
-                    <path d="M2 12l10 5 10-5" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-slate-600 mb-1">Cloud</div>
-                  <div className="text-base font-bold font-mono text-slate-600 mb-2">Coming soon</div>
-                  <div className="text-sm text-slate-700">AWS, Azure, or cloud networking references.</div>
-                </div>
-              </div>
-            </div>
+            <ResourceCard
+              title="Networking Cables Reference"
+              description="Complete cable reference covering copper (Cat5e–Cat8), multimode/singlemode fiber, serial (RS-232/422/485), USB, and DAC/Twinax. Filter by speed, distance, protocol and vendor."
+              category="Networking"
+              categoryColor="#4ade80"
+              href="/resources/networking-cables"
+              icon={
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 9h16" />
+                  <path d="M4 15h16" />
+                  <path d="M10 3 8 21" />
+                  <path d="M14 3l-2 18" />
+                </svg>
+              }
+            />
 
             <div className="block bg-slate-800/20 border border-slate-800 border-dashed rounded-xl p-6 opacity-40 cursor-default">
               <div className="flex items-start gap-4">

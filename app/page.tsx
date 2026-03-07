@@ -90,7 +90,10 @@ export default function Home() {
           <div className="w-full max-w-lg space-y-4">
             {/* Projects - left of center */}
             <div className="md:ml-0">
-              <Link href="/projects" className="group relative block w-full md:w-80">
+              <Link
+                href="/projects"
+                className="group relative block w-full md:w-80"
+              >
                 <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-5 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
                   <div className="relative flex items-center justify-between min-h-[60px]">
@@ -98,11 +101,23 @@ export default function Home() {
                       <h3 className="text-3xl md:text-4xl font-bold font-mono text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">
                         Projects
                       </h3>
-                      <p className="text-slate-400 font-mono text-sm">What I'm building</p>
+                      <p className="text-slate-400 font-mono text-sm">
+                        What I'm building
+                      </p>
                     </div>
                     <div className="ml-4 transform group-hover:translate-x-2 transition-transform duration-300">
-                      <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      <svg
+                        className="w-6 h-6 text-cyan-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
                       </svg>
                     </div>
                   </div>
@@ -113,7 +128,10 @@ export default function Home() {
 
             {/* Blog - center axis */}
             <div className="md:ml-16">
-              <Link href="/blog" className="group relative block w-full md:w-80">
+              <Link
+                href="/blog"
+                className="group relative block w-full md:w-80"
+              >
                 <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-5 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
                   <div className="relative flex items-center justify-between min-h-[60px]">
@@ -121,11 +139,23 @@ export default function Home() {
                       <h3 className="text-3xl md:text-4xl font-bold font-mono text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">
                         Blog
                       </h3>
-                      <p className="text-slate-400 font-mono text-sm">Thoughts & discoveries</p>
+                      <p className="text-slate-400 font-mono text-sm">
+                        Thoughts & discoveries
+                      </p>
                     </div>
                     <div className="ml-4 transform group-hover:translate-x-2 transition-transform duration-300">
-                      <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      <svg
+                        className="w-6 h-6 text-cyan-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
                       </svg>
                     </div>
                   </div>
@@ -136,7 +166,10 @@ export default function Home() {
 
             {/* Resources - center axis */}
             <div className="md:ml-16">
-              <Link href="/resources" className="group relative block w-full md:w-80">
+              <Link
+                href="/resources"
+                className="group relative block w-full md:w-80"
+              >
                 <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-5 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
                   <div className="relative flex items-center justify-between min-h-[60px]">
@@ -144,11 +177,23 @@ export default function Home() {
                       <h3 className="text-3xl md:text-4xl font-bold font-mono text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">
                         Resources
                       </h3>
-                      <p className="text-slate-400 font-mono text-sm">References & tools</p>
+                      <p className="text-slate-400 font-mono text-sm">
+                        References & tools
+                      </p>
                     </div>
                     <div className="ml-4 transform group-hover:translate-x-2 transition-transform duration-300">
-                      <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      <svg
+                        className="w-6 h-6 text-cyan-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
                       </svg>
                     </div>
                   </div>
@@ -158,8 +203,11 @@ export default function Home() {
             </div>
 
             {/* About - right of center */}
-            <div className="md:ml-52">
-              <Link href="/about" className="group relative block w-full md:w-64">
+            <div className="md:ml-0">
+              <Link
+                href="/about"
+                className="group relative block w-full md:w-80"
+              >
                 <div className="relative bg-slate-800/50 backdrop-blur-sm border-2 border-cyan-400 rounded-2xl p-5 transition-all duration-300 hover:border-cyan-300 shadow-lg shadow-cyan-400/20 hover:shadow-2xl hover:shadow-cyan-400/30 hover:-translate-y-1">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/0 via-cyan-400/5 to-cyan-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
                   <div className="relative flex items-center justify-between min-h-[60px]">
@@ -167,11 +215,23 @@ export default function Home() {
                       <h3 className="text-3xl md:text-4xl font-bold font-mono text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">
                         About
                       </h3>
-                      <p className="text-slate-400 font-mono text-sm">Get to know me</p>
+                      <p className="text-slate-400 font-mono text-sm">
+                        Get to know me
+                      </p>
                     </div>
                     <div className="ml-4 transform group-hover:translate-x-2 transition-transform duration-300">
-                      <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      <svg
+                        className="w-6 h-6 text-cyan-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
                       </svg>
                     </div>
                   </div>

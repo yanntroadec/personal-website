@@ -43,12 +43,6 @@ function ResourceCard({ title, description, category, categoryColor, href, icon 
           </p>
         </div>
       </div>
-      <div className="mt-4 flex items-center gap-1.5 text-xs font-mono text-slate-500 group-hover:text-cyan-400 transition-colors duration-300">
-        <span>Open reference</span>
-        <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </div>
     </Link>
   )
 }

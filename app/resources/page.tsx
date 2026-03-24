@@ -4,7 +4,6 @@ import Link from "next/link"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import FloatingParticles from "../../components/FloatingParticles"
-import { useEffect } from "react"
 
 interface ResourceCardProps {
   title: string
@@ -48,12 +47,6 @@ function ResourceCard({ title, description, category, categoryColor, href, icon 
 }
 
 export default function Resources() {
-  useEffect(() => {
-    document.title = 'Resources | Yann Troadec'
-    const meta = document.querySelector('meta[name="description"]')
-    if (meta) meta.setAttribute('content', 'Interactive technical references and tools covering networking, cloud, security, and programming. Browse Cisco IOS commands, and more.')
-  }, [])
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col animate-fade-in-slow relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-20 pointer-events-none" />

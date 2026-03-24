@@ -4,14 +4,8 @@ import Header from "../../../components/Header"
 import Footer from "../../../components/Footer"
 import FloatingParticles from "../../../components/FloatingParticles"
 import NetworkingCablesReference from "../../../components/NetworkingCablesReference"
-import { useEffect } from "react"
 
 export default function NetworkingCablesPage() {
-  useEffect(() => {
-    document.title = 'Networking Cables Reference | Yann Troadec'
-    const meta = document.querySelector('meta[name="description"]')
-    if (meta) meta.setAttribute('content', 'Interactive networking cable reference covering copper (Cat5e\u2013Cat8), multimode/singlemode fiber (OM1\u2013OM5, OS1\u2013OS2), serial (RS-232/422/485), USB, and DAC/Twinax. Filter by type, speed, distance, protocol, and vendor.')
-  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col animate-fade-in-slow relative overflow-hidden">

@@ -597,7 +597,8 @@ const CSS = `
 
 function togSet<T>(prev: Set<T>, val: T): Set<T> {
   const next = new Set(prev)
-  next.has(val) ? next.delete(val) : next.add(val)
+  if (next.has(val)) next.delete(val)
+  else next.add(val)
   return next
 }
 

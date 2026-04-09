@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | Yann Troadec",
   },
   description:
-    "IT Technician focused on networking. Building hands-on skills through Cisco labs and documentation. CompTIA A+ certified.",
+    "IT technician specializing in networking. Cisco CCNA and CompTIA A+ certified.",
   authors: [{ name: "Yann Troadec" }],
   keywords: [
     "Yann Troadec",
@@ -28,6 +28,8 @@ export const metadata: Metadata = {
     "switching",
     "routing",
     "CompTIA A+",
+    "CCNA",
+    "Cisco CCNA",
     "Packet Tracer",
     "Rennes",
     "France",
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Yann Troadec - Systems, layer by layer",
     description:
-      "IT Technician focused on networking. Building hands-on skills through Cisco labs and documentation.",
+      "IT technician specializing in networking. Cisco CCNA and CompTIA A+ certified.",
     type: "website",
     url: "https://yanntroadec.com",
     siteName: "Yann Troadec Portfolio",
@@ -57,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yann Troadec - Systems, layer by layer",
     description:
-      "IT Technician focused on networking. Building hands-on skills through Cisco labs and documentation.",
+      "IT technician specializing in networking. Cisco CCNA and CompTIA A+ certified.",
     creator: "@yanntroadec",
     images: ["/og-image.png"],
   },
@@ -126,8 +128,9 @@ export default function RootLayout({
     url: "https://yanntroadec.com",
     jobTitle: "IT Technician",
     description:
-      "IT Technician focused on networking. Building hands-on skills through Cisco labs and documentation.",
+      "IT technician specializing in networking. Cisco CCNA and CompTIA A+ certified.",
     knowsAbout: [
+      "CCNA",
       "Cisco IOS",
       "TCP/IP",
       "VLANs",

@@ -76,8 +76,8 @@ export default function Home() {
 
             {/* Introduction paragraph */}
             <p className="text-slate-400 text-base md:text-lg mt-6 font-mono leading-relaxed">
-              IT Technician focused on networking. Building hands-on skills
-              through Cisco labs and documentation.
+              IT technician specializing in networking. Cisco CCNA and CompTIA
+              A+ certified.
             </p>
 
             {/* Decorative accent line */}

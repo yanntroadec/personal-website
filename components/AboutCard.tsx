@@ -148,6 +148,9 @@ export default function AboutCard() {
           </div>
           <div className="flex flex-wrap gap-2">
             <span className="px-4 py-2 bg-cyan-400/10 border border-cyan-400/30 rounded-lg text-cyan-400 font-mono text-sm">
+              Cisco CCNA
+            </span>
+            <span className="px-4 py-2 bg-cyan-400/10 border border-cyan-400/30 rounded-lg text-cyan-400 font-mono text-sm">
               CompTIA A+
             </span>
             <span className="px-4 py-2 bg-cyan-400/10 border border-cyan-400/30 rounded-lg text-cyan-400 font-mono text-sm">

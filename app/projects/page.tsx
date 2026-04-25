@@ -11,7 +11,7 @@ import FloatingParticles from "../../components/FloatingParticles"
  *
  * Interactive projects showcase featuring:
  * - Horizontal carousel navigation with arrow controls
- * - Four projects: Personal Website, IndigoCV, Packet Tracer Labs, Caesar Cipher
+ * - Three projects: Personal Website, Packet Tracer Labs, Caesar Cipher
  * - GitHub repository integration with expandable file tree
  * - Uniform card sizing with adaptive height
  * - Floating particle animation background
@@ -59,15 +59,7 @@ export default function Projects() {
             githubUrl="https://github.com/yanntroadec/cisco-packettracer-networklabs-series-01-enterprise"
           />
 
-          {/* Project 3: IndigoCV */}
-          <ProjectCard
-            title="IndigoCV"
-            description="A free, trilingual CV builder supporting English, French, and Spanish. Fill out a guided form, preview your CV in real time, and download it as a PDF instantly."
-            projectUrl="/projects/indigocv"
-            githubUrl="https://github.com/yanntroadec/Indigocv"
-          />
-
-          {/* Project 4: Caesar Cipher Decryptor */}
+          {/* Project 3: Caesar Cipher Decryptor */}
           <ProjectCard
             title="Caesar Cipher Decryptor"
             description="An automatic Caesar cipher decoder supporting four languages with frequency analysis."

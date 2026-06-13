@@ -14,13 +14,17 @@ export const metadata: Metadata = {
     template: "%s | Yann Troadec",
   },
   description:
-    "IT technician specializing in networking. Cisco CCNA and CompTIA A+ certified.",
+    "NOC technician at Orange, keeping critical network and cloud services alive 24/7. Cisco CCNA and CompTIA A+ certified.",
   authors: [{ name: "Yann Troadec" }],
   keywords: [
     "Yann Troadec",
+    "NOC technician",
+    "Orange",
+    "network operations center",
     "IT technician",
     "network technician",
     "networking",
+    "cloud services",
     "Cisco",
     "Cisco IOS",
     "VLAN",
@@ -39,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Yann Troadec - Systems, layer by layer",
     description:
-      "IT technician specializing in networking. Cisco CCNA and CompTIA A+ certified.",
+      "NOC technician at Orange, keeping critical network and cloud services alive 24/7. Cisco CCNA and CompTIA A+ certified.",
     type: "website",
     url: "https://yanntroadec.com",
     siteName: "Yann Troadec Portfolio",
@@ -59,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yann Troadec - Systems, layer by layer",
     description:
-      "IT technician specializing in networking. Cisco CCNA and CompTIA A+ certified.",
+      "NOC technician at Orange, keeping critical network and cloud services alive 24/7. Cisco CCNA and CompTIA A+ certified.",
     creator: "@yanntroadec",
     images: ["/og-image.png"],
   },
@@ -126,9 +130,13 @@ export default function RootLayout({
     "@type": "Person",
     name: "Yann Troadec",
     url: "https://yanntroadec.com",
-    jobTitle: "IT Technician",
+    jobTitle: "NOC Technician",
     description:
-      "IT technician specializing in networking. Cisco CCNA and CompTIA A+ certified.",
+      "NOC technician at Orange, keeping critical network and cloud services alive 24/7. Cisco CCNA and CompTIA A+ certified.",
+    worksFor: {
+      "@type": "Organization",
+      name: "Orange",
+    },
     knowsAbout: [
       "CCNA",
       "Cisco IOS",
@@ -137,6 +145,8 @@ export default function RootLayout({
       "Switching",
       "Routing",
       "Network Troubleshooting",
+      "Network Operations Center",
+      "Cloud Services",
       "Packet Tracer",
     ],
     sameAs: [
